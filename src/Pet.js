@@ -1,14 +1,15 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-export const Pet = ({ name, animal, breed, images, location, id }) => {
+const Pet = ({ name, animal, breed, images, location, id }) => {
   let hero = "http://pets-images.dev-apis.com/pets/none.jpg";
   if (images.length) {
     hero = images[0];
   }
 
   return (
-    <a
-      href={`/details/${id}`}
+    <Link
+      to={`/details/${id}`}
       className="w-100% flex 
         overflow-hidden 
         mt-7 pb-8 border-b-black border-b-2"
@@ -20,6 +21,7 @@ export const Pet = ({ name, animal, breed, images, location, id }) => {
           {animal} - {breed} - {location}
         </h1>
       </div>
-    </a>
+    </Link>
   );
 };
+export default Pet;

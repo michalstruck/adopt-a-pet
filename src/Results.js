@@ -1,7 +1,7 @@
-import { Pet } from "./Pet";
+import Pet from "./Pet";
 import React from "react";
 
-export const Results = ({ pets }) => {
+const Results = ({ pets }) => {
   return (
     <div
       className="h-auto w-[60rem] m-auto px-8 py-4 flex
@@ -32,3 +32,4 @@ export const Results = ({ pets }) => {
     </div>
   );
 };
+export default Results;

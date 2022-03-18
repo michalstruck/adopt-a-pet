@@ -1,10 +1,10 @@
 import React from "react";
 import { useEffect, useState, useCallback } from "react";
 import useBreedList from "./useBreedList";
-import { Results } from "./Results";
+import Results from "./Results";
 const ANIMALS = ["bird", "cat", "dog", "rabbit", "reptile"];
 
-export const SearchParams = () => {
+const SearchParams = () => {
   const [animal, updateAnimal] = useState("");
   const [location, updateLocation] = useState("");
   const [breed, updateBreed] = useState("");
@@ -25,10 +25,7 @@ export const SearchParams = () => {
   }, [animal, location, breed, requestPets]);
 
   return (
-    <div
-      className="bg-img
-    w-auto h-auto justify-center items-center"
-    >
+    <main>
       <div
         className="flex
       justify-center items-center h-screen"
@@ -103,9 +100,10 @@ export const SearchParams = () => {
           >
             Submit
           </button>
-        </form>{" "}
+        </form>
       </div>
       <Results pets={pets} />{" "}
-    </div>
+    </main>
   );
 };
+export default SearchParams;
