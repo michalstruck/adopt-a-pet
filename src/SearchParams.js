@@ -25,10 +25,10 @@ const SearchParams = () => {
   }, [animal, location, breed, requestPets]);
 
   return (
-    <main>
+    <div className="bg-img">
       <div
         className="flex
-      justify-center items-center h-screen"
+      justify-center items-center h-full py-24"
       >
         <img
           alt="logo"
@@ -103,7 +103,7 @@ const SearchParams = () => {
         </form>
       </div>
       <Results pets={pets} />{" "}
-    </main>
+    </div>
   );
 };
 export default SearchParams;

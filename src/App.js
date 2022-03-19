@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 const App = () => {
   return (
-    <main className="bg-img">
+    <div className="bg-img">
       <Router>
         <Switch>
           <Route path="/details/:id">
@@ -16,7 +16,7 @@ const App = () => {
           </Route>
         </Switch>
       </Router>
-    </main>
+    </div>
   );
 };
 export default App;
