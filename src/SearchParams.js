@@ -25,7 +25,7 @@ const SearchParams = () => {
   }, [animal, location, breed, requestPets]);
 
   return (
-    <div className="bg-img">
+    <div className="bg-img ">
       <div
         className="flex
       justify-center items-center h-full py-24"
