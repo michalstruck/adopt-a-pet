@@ -31,7 +31,7 @@ export class Carousel extends Component {
         >
           <img
             src={images[active]}
-            className="max-w-[45%] max-h-96"
+            className="max-w-[45%] max-h-96 rounded-md mt-8"
             alt="animal"
           />
           <div className="w-6/12">

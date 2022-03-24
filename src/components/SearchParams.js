@@ -1,8 +1,10 @@
 import React from "react";
-import { useEffect, useState, useCallback } from "react";
-import useBreedList from "./useBreedList";
+import { useEffect, useState, useCallback, useContext } from "react";
+import useBreedList from "../common/useBreedList";
 import Results from "./Results";
-const ANIMALS = ["bird", "cat", "dog", "rabbit", "reptile"];
+import ThemeContext from "../common/ThemeContext";
+
+const animalsArray = ["bird", "cat", "dog", "rabbit", "reptile"];
 
 const SearchParams = () => {
   const [animal, updateAnimal] = useState("");
@@ -10,6 +12,7 @@ const SearchParams = () => {
   const [breed, updateBreed] = useState("");
   const [pets, setPets] = useState([]);
   const [breeds] = useBreedList(animal);
+  const [theme, setTheme] = useContext(ThemeContext);
 
   const requestPets = useCallback(async () => {
     const res = await fetch(
@@ -22,7 +25,7 @@ const SearchParams = () => {
 
   useEffect(() => {
     requestPets();
-  }, [animal, location, breed, requestPets]);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <div className="bg-img ">
@@ -68,7 +71,7 @@ const SearchParams = () => {
               onBlur={(e) => updateAnimal(e.target.value)}
             >
               <option />
-              {ANIMALS.map((animal) => (
+              {animalsArray.map((animal) => (
                 <option key={animal} value={animal}>
                   {animal}
                 </option>
@@ -93,10 +96,24 @@ const SearchParams = () => {
               ))}
             </select>
           </label>
+          <label htmlFor="theme" className="block mx-8 my-4">
+            Theme
+            <select
+              value={theme}
+              onChange={(e) => setTheme(e.target.value)}
+              onBlur={(e) => setTheme(e.target.value)}
+              className="block w-80 rounded-md focus:border-blue-100 "
+            >
+              <option value="rgb(153 27 27)">Bloody Red</option>
+              <option value="peru">Peru</option>
+              <option value="mediumorchid">Medium Orchid</option>
+            </select>
+          </label>
           <button
+            style={{ backgroundColor: theme }}
             className="rounded-md border
          border-black h-10 w-24 
-         bg-red-800 text-white container mx-36 my-8"
+         text-white container mx-36 my-8"
           >
             Submit
           </button>

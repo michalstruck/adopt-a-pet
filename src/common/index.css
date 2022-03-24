@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.bg-img {
+  background-image: url(http://pets-images.dev-apis.com/pets/wallpaperB.jpg);
+}
+.img-clip {
+  clip-path: circle(50% at 50% 50%);
+}
+
+#modal {
+  background-color: rgba(0, 0, 0, 0.9);
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#modal:empty {
+  display: none;
+}
