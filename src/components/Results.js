@@ -4,7 +4,7 @@ import React from "react";
 const Results = ({ pets }) => {
   return (
     <div
-      className="h-auto w-[60rem] m-auto px-8 py-4 flex
+      className="h-auto  m-auto lg:w-[60rem] px-8 py-4 flex
       rounded-lg flex-col
       bg-red-100 
       shadow-xl
