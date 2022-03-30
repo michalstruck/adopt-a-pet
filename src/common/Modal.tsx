@@ -3,18 +3,23 @@ import { createPortal } from "react-dom";
 
 const modalRoot = document.getElementById("modal");
 
-const Modal = ({ children }) => {
-  const elRef = useRef(null);
+const Modal: React.FunctionComponent = ({ children }) => {
+  const elRef: React.MutableRefObject<HTMLDivElement | null> = useRef(null);
+
   if (!elRef.current) {
     elRef.current = document.createElement("div");
-    if (elRef.current) {
-      modalRoot.appendChild(elRef.current);
-    }
   }
 
   useEffect(() => {
+    if (!modalRoot || !elRef.current) {
+      return;
+    }
     modalRoot.appendChild(elRef.current);
-    return () => modalRoot.removeChild(elRef.current);
+    return () => {
+      if (elRef.current) {
+        modalRoot.removeChild(elRef.current);
+      }
+    };
   }, []);
 
   return createPortal(<div>{children}</div>, elRef.current);

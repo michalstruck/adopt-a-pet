@@ -3,28 +3,29 @@ import { useEffect, useState, useCallback, useContext } from "react";
 import useBreedList from "../common/useBreedList";
 import Results from "./Results";
 import ThemeContext from "../common/ThemeContext";
+import { Animal, Pet, PetAPIResponse } from "../common/APIResponsesTypes";
 
-const animalsArray = ["bird", "cat", "dog", "rabbit", "reptile"];
+const animalsArray: Animal[] = ["bird", "cat", "dog", "rabbit", "reptile"];
 
 const SearchParams = () => {
   const [animal, updateAnimal] = useState("");
   const [location, updateLocation] = useState("");
   const [breed, updateBreed] = useState("");
-  const [pets, setPets] = useState([]);
-  const [breeds] = useBreedList(animal);
+  const [pets, setPets] = useState([] as Pet[]);
+  const [breeds] = useBreedList(animal as Animal);
   const [theme, setTheme] = useContext(ThemeContext);
 
   const requestPets = useCallback(async () => {
     const res = await fetch(
       `http://pets-v2.dev-apis.com/pets?animal=${animal}&location=${location}&breed=${breed}`
     );
-    const json = await res.json();
+    const json = (await res.json()) as PetAPIResponse;
 
     setPets(json.pets);
   }, [animal, location, breed]);
 
   useEffect(() => {
-    requestPets();
+    void requestPets();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (

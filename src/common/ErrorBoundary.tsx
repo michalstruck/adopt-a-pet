@@ -1,21 +1,29 @@
-import { Component } from "react";
+import { Component, ErrorInfo, ReactNode } from "react";
 import { Link, Redirect } from "react-router-dom";
 
-class ErrorBoundary extends Component {
+interface State {
+  hasError: boolean;
+  redirect: boolean;
+}
+
+class ErrorBoundary extends Component<any, State> {
   constructor() {
-    super();
+    super({});
     this.state = { hasError: false, redirect: false };
   }
-  static getDerivedStateFromError(e) {
-    return { hasError: true };
+  static getDerivedStateFromError(): State {
+    return { hasError: true, redirect: false };
+  }
+  componentDidCatch(error: Error, info: ErrorInfo): void {
+    console.error("ErrorBoundary caught an error", error, info);
+  }
+  componentDidUpdate(): void {
+    if (this.state.hasError) {
+      setTimeout(() => this.setState({ redirect: true }), 5000);
+    }
   }
 
-  componentDidCatch(error, info) {
-    console.error("ErrorBoundary caught an error");
-    setTimeout(() => this.setState({ redirect: true }), 5000);
-  }
-
-  render() {
+  render(): ReactNode {
     if (this.state.redirect) {
       return <Redirect to="/" />;
     } else if (this.state.hasError) {

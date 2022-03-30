@@ -1,8 +1,15 @@
-import React, { Component } from "react";
+import React, { Component, MouseEvent } from "react";
 
-export class Carousel extends Component {
+interface State {
+  active: number;
+}
+
+// interface Props {
+//   images: string[];
+// }
+export class Carousel extends Component<any, State> {
   constructor() {
-    super();
+    super({});
     this.state = { active: 0 };
   }
 
@@ -10,9 +17,10 @@ export class Carousel extends Component {
     images: ["http://pets-images.dev-apis.com/pets/none.jpg"],
   };
 
-  handleIndexClick = (event) => {
+  handleIndexClick = (event: MouseEvent<HTMLElement>) => {
+    if (!(event.target instanceof HTMLElement)) return;
     this.setState({
-      active: parseInt(event.target.dataset.index, 10),
+      active: parseInt(event.target.dataset.index!, 10), //! tells ts im sure that dataset.value is present, ?? "" makes ts fall back to a default - "" - if dataset.index in undef/null
     });
   };
   render() {
@@ -30,7 +38,7 @@ export class Carousel extends Component {
           alt="animal"
         />
         <div className="w-6/12">
-          {images.map((photo, index) => (
+          {images.map((photo: string | undefined, index: number) => (
             <img
               alt="img"
               data-index={index}
