@@ -53,7 +53,7 @@ class Details extends Component<RouteComponentProps<{ id: string }>> {
             {(theme) => (
               <button
                 onClick={this.toggleModal}
-                style={{ backgroundColor: theme }}
+                style={{ backgroundColor: theme[0] }}
                 className="rounded-md border
          border-black h-10 w-24 
          text-white container my-8"
@@ -74,7 +74,7 @@ class Details extends Component<RouteComponentProps<{ id: string }>> {
                   <ThemeContext.Consumer>
                     {(theme) => (
                       <button
-                        style={{ backgroundColor: theme }}
+                        style={{ backgroundColor: theme[0] }}
                         className="rounded-md border 
                     border-black h-10 w-24 
                     text-white container mx-36 my-8"
@@ -87,7 +87,7 @@ class Details extends Component<RouteComponentProps<{ id: string }>> {
                   <ThemeContext.Consumer>
                     {(theme) => (
                       <button
-                        style={{ backgroundColor: theme }}
+                        style={{ backgroundColor: theme[0] }}
                         className="rounded-md border
                     border-black h-10 w-24 
                     text-white container mx-36 my-8"
