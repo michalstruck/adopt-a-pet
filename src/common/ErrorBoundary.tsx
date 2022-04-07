@@ -8,7 +8,7 @@ interface State {
 
 class ErrorBoundary extends Component<any, State> {
   constructor() {
-    super({});
+    super(undefined);
     this.state = { hasError: false, redirect: false };
   }
   static getDerivedStateFromError(): State {

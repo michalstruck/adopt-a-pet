@@ -3,7 +3,7 @@ import { createPortal } from "react-dom";
 
 const modalRoot = document.getElementById("modal");
 
-const Modal: React.FunctionComponent = ({ children }) => {
+const Modal: React.FC = ({ children }) => {
   const elRef: React.MutableRefObject<HTMLDivElement | null> = useRef(null);
 
   if (!elRef.current) {
