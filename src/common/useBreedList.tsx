@@ -7,7 +7,7 @@ const localCache: {
   [index: string]: string[];
 } = {};
 
-export default function useBreedList(animalInput: Animal): [string[], Status] {
+export default function useBreedList(animalInput?: Animal): [string[], Status] {
   const [breedList, setBreedList] = useState([] as string[]);
   const [status, setStatus] = useState("unloaded" as Status);
 
@@ -18,8 +18,10 @@ export default function useBreedList(animalInput: Animal): [string[], Status] {
       `http://pets-v2.dev-apis.com/breeds?animal=${animalInput}`
     );
     const json = (await res.json()) as BreedListAPIResponse;
-    localCache[animalInput] = json.breeds || [];
-    setBreedList(localCache[animalInput]);
+    if (animalInput) {
+      localCache[animalInput] = json.breeds || [];
+    }
+    setBreedList(json.breeds || []);
     setStatus("loaded");
   }, [animalInput]);
 

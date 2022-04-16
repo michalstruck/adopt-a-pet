@@ -1,61 +1,62 @@
-import React from "react";
-import { useEffect, useState, useCallback, useContext } from "react";
+import React, { useEffect, useState, useContext, useCallback } from "react";
 import useBreedList from "../common/useBreedList";
 import Results from "./Results";
 import ThemeContext from "../common/ThemeContext";
 import { Animal, Pet, PetAPIResponse } from "../common/APIResponsesTypes";
+import { useForm } from "react-hook-form";
+
+interface FormValues {
+  location: string | undefined;
+  animal?: Animal;
+  breed: string | undefined;
+}
 
 const animalsArray: Animal[] = ["bird", "cat", "dog", "rabbit", "reptile"];
+const defaultValues = { location: "", breed: "" }; // default to empty obj and evaluate in??
 
 const SearchParams = () => {
-  const [animal, updateAnimal] = useState("");
-  const [location, updateLocation] = useState("");
-  const [breed, updateBreed] = useState("");
-  const [pets, setPets] = useState([] as Pet[]);
-  const [breeds] = useBreedList(animal as Animal);
+  const { register, handleSubmit, watch } = useForm<FormValues>({
+    defaultValues,
+  });
+  const [pets, setPets] = useState<Pet[]>([]);
+  const [breeds] = useBreedList(watch("animal"));
   const [theme, setTheme] = useContext(ThemeContext);
+  const requestPets = useCallback(
+    async (data: FormValues) => {
+      const res = await fetch(
+        `http://pets-v2.dev-apis.com/pets?animal=${
+          data.animal || ""
+        }&location=${data.location}&breed=${data.breed}`
+      );
+      const json = (await res.json()) as PetAPIResponse;
 
-  const requestPets = useCallback(async () => {
-    const res = await fetch(
-      `http://pets-v2.dev-apis.com/pets?animal=${animal}&location=${location}&breed=${breed}`
-    );
-    const json = (await res.json()) as PetAPIResponse;
+      setPets(json.pets);
+    },
+    [setPets]
+  );
 
-    setPets(json.pets);
-  }, [animal, location, breed]);
-
-  useEffect(() => {
-    void requestPets();
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  useEffect(() => void requestPets(defaultValues), []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <div className="my-0 mx-auto w-11/12 flex flex-col items-center justify-center">
       <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          requestPets();
-        }}
+        onSubmit={handleSubmit((data: FormValues) => requestPets(data))}
         className="flex flex-col
         justify-center items-center w-96 mb-10 rounded-lg bg-red-100 shadow-xl"
       >
         <label htmlFor="location" className="block mx-8 my-4">
           Location{" "}
           <input
+            {...register("location")}
             type="text"
             className="block w-80 rounded-md focus:border-blue-100"
-            id="location"
-            value={location}
-            onChange={(e) => updateLocation(e.target.value)}
           />
         </label>
         <label htmlFor="animal" className="block mx-8 my-4">
           Animal
           <select
             className="block w-80 rounded-md focus:border-blue-100 "
-            id="animal"
-            value={animal}
-            onChange={(e) => updateAnimal(e.target.value)}
-            onBlur={(e) => updateAnimal(e.target.value)}
+            {...register("animal")}
           >
             <option />
             {animalsArray.map((animal) => (
@@ -70,10 +71,7 @@ const SearchParams = () => {
           <select
             className="block w-80 rounded-md focus:border-blue-100 "
             disabled={!breeds.length}
-            id="breed"
-            value={breed}
-            onChange={(e) => updateBreed(e.target.value)}
-            onBlur={(e) => updateBreed(e.target.value)}
+            {...register("breed")}
           >
             <option />
             {breeds.map((breed) => (
