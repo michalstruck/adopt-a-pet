@@ -26,7 +26,7 @@ const SearchParams = () => {
       const res = await fetch(
         `http://pets-v2.dev-apis.com/pets?animal=${
           data.animal || ""
-        }&location=${data.location}&breed=${data.breed}`
+        }&location=${data.location || ""}&breed=${data.breed || ""}`
       );
       const json = (await res.json()) as PetAPIResponse;
 
@@ -49,13 +49,13 @@ const SearchParams = () => {
           <input
             {...register("location")}
             type="text"
-            className="block w-80 rounded-md focus:border-blue-100"
+            className="block w-80 shadow-lg rounded-md focus:border-blue-100"
           />
         </label>
         <label htmlFor="animal" className="block mx-8 my-4">
           Animal
           <select
-            className="block w-80 rounded-md focus:border-blue-100 "
+            className="block w-80 shadow-lg rounded-md focus:border-blue-100 "
             {...register("animal")}
           >
             <option />
@@ -69,7 +69,7 @@ const SearchParams = () => {
         <label htmlFor="breed" className="block mx-8 my-4">
           Breed
           <select
-            className="block w-80 rounded-md focus:border-blue-100 "
+            className="block w-80 shadow-lg rounded-md focus:border-blue-100 disabled:border-gray-400 "
             disabled={!breeds.length}
             {...register("breed")}
           >
@@ -87,17 +87,17 @@ const SearchParams = () => {
             value={theme}
             onChange={(e) => setTheme(e.target.value)}
             onBlur={(e) => setTheme(e.target.value)}
-            className="block w-80 rounded-md focus:border-blue-100 "
+            className="block w-80 shadow-lg rounded-md focus:border-blue-100 "
           >
-            <option value="rgb(153 27 27)">Bloody Red</option>
+            <option value="rgb(153 27 27)">adasiunia34</option>
             <option value="peru">Peru</option>
             <option value="mediumorchid">Medium Orchid</option>
           </select>
         </label>
         <button
           style={{ backgroundColor: theme }}
-          className="rounded-md border
-         border-black h-10 w-24 
+          className="rounded-md 
+         shadow-lg shadow-stone-500 h-10 w-24 
          text-white container mx-36 my-8"
         >
           Submit

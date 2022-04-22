@@ -12,7 +12,6 @@ interface Pet1 extends Pet {
 }
 
 export const Details = (props: RouteComponentProps<{ id: string }>) => {
-  // <RouteComponentProps<{ id: string }>>
   const [info, setInfo] = useState<Pet1>({
     loading: true,
     showModal: false,
@@ -71,9 +70,8 @@ export const Details = (props: RouteComponentProps<{ id: string }>) => {
             <button
               onClick={toggleModal}
               style={{ backgroundColor: theme[0] }}
-              className="rounded-md border
-         border-black h-auto w-auto px-1
-         text-white container my-8"
+              className="rounded-md h-auto w-auto px-6 py-1
+              shadow-lg shadow-stone-500 text-white container my-8"
             >
               Adopt <br /> {name}
             </button>

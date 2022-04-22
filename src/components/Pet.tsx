@@ -15,7 +15,11 @@ const Pet = ({ name, animal, breed, images, location, id }: PetType) => {
         overflow-hidden 
         mt-7 pb-8 border-b-black border-b-2"
     >
-      <img src={hero} alt={name} className="w-48 h-48 rounded-full" />
+      <img
+        src={hero}
+        alt={name}
+        className="w-48 h-48 rounded-full shadow-md shadow-stone-500 "
+      />
       <div className="pl-4">
         <h1 className="text-3xl font-bold">{name}</h1>
         <h1 className="text-lg">

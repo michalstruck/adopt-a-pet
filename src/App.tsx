@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Navbar from "./components/Navbar";
 import SearchParams from "./components/SearchParams";
 import Details from "./components/Details";
 import { Link, BrowserRouter as Router, Route, Switch } from "react-router-dom";
@@ -15,6 +16,7 @@ const App = () => {
             "url(http://pets-images.dev-apis.com/pets/wallpaperA.jpg)",
         }}
       >
+        <Navbar />
         <Router>
           <Link to="/">
             <img

@@ -1,7 +1,7 @@
 import { createContext } from "react";
 
 const ThemeContext = createContext<[string, (theme: string) => void]>([
-  "green",
+  "rgb(153 27 27)",
   () => {},
 ]);
 
