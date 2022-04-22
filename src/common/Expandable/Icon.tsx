@@ -19,10 +19,10 @@ const Icon = ({ style = "" }: Props) => {
           }}
           className={`${
             turnState && "animate-turn360"
-          } ${style} text-7xl float-right`}
+          } ${style} text-7xl float-right pr-1 z-10`}
           onAnimationEnd={() => setTurnState(false)}
         >
-          -
+          ‒ {/* it's the figure dash */}
         </button>
       ) : (
         <button
@@ -32,7 +32,7 @@ const Icon = ({ style = "" }: Props) => {
           }}
           className={`${
             turnState && "animate-turn360"
-          } ${style}text-7xl float-right`}
+          } ${style}text-7xl float-right z-10`}
           onAnimationEnd={() => setTurnState(false)}
         >
           +
