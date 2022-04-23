@@ -1,7 +1,6 @@
 import React, {
   createContext,
   useState,
-  useCallback,
   useRef,
   useEffect,
   useMemo,
@@ -14,27 +13,34 @@ interface Props {
   children: any;
   onExpand: (v: boolean) => void;
 }
-export const ExpandableContext = createContext({
+export const ExpandableContext = createContext<{
+  expanded: boolean;
+  toggleExpand: () => void | React.ReactNode;
+}>({
   expanded: false,
-  toggle: () => {},
+  toggleExpand: () => {},
 });
-const { Provider } = ExpandableContext;
 
 const Expandable = ({ children, onExpand }: Props) => {
   const [expanded, setExpanded] = useState(false);
-  const toggle = useCallback(
-    () => setExpanded((prevExpanded) => !prevExpanded),
-    []
+  const toggleExpand = () => setExpanded((prevExpanded) => !prevExpanded);
+  const value = useMemo(
+    () => ({ expanded, toggleExpand }),
+    [expanded, toggleExpand]
   );
-  const componentJustMounted = useRef(true);
-  useEffect(() => {
-    // if (!componentJustMounted) {
-    //   onExpand(expanded);
-    // }
-    componentJustMounted.current = false;
-  }, [expanded]);
-  const value = useMemo(() => ({ expanded, toggle }), [expanded, toggle]);
-  return <Provider value={value}>{children}</Provider>;
+
+  // const componentJustMounted = useRef(true);
+  // useEffect(() => {
+  //   // if (!componentJustMounted) {
+  //   //   onExpand(expanded);
+  //   // }
+  //   componentJustMounted.current = false;
+  // }, [expanded]);
+  return (
+    <ExpandableContext.Provider value={value}>
+      {children}
+    </ExpandableContext.Provider>
+  );
 };
 
 Expandable.Header = Header;

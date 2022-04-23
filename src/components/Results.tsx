@@ -12,7 +12,9 @@ const Results: FunctionComponent<{ pets: PetType[] }> = ({ pets }) => {
       justify-center mb-4"
     >
       {!pets.length ? (
-        <div className="text-xl">no pets</div>
+        <div className="text-xl">
+          No pets could be found...check your internet connection?
+        </div>
       ) : (
         <div className="">
           {pets.map((pet) => {

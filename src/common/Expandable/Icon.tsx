@@ -1,45 +1,12 @@
-import React, { useContext, useState } from "react";
-import { ExpandableContext } from "./Menu";
+import React from "react";
 
 interface Props {
   style: string;
+  children: React.ReactNode;
 }
 
-const Icon = ({ style = "" }: Props) => {
-  const [turnState, setTurnState] = useState(false);
-  const { expanded, toggle } = useContext(ExpandableContext);
-
-  return (
-    <>
-      {expanded ? (
-        <button
-          onClick={() => {
-            setTurnState(true);
-            toggle();
-          }}
-          className={`${
-            turnState && "animate-turn360"
-          } ${style} text-7xl float-right pr-1 z-10`}
-          onAnimationEnd={() => setTurnState(false)}
-        >
-          ‒ {/* it's the figure dash */}
-        </button>
-      ) : (
-        <button
-          onClick={() => {
-            setTurnState(true);
-            toggle();
-          }}
-          className={`${
-            turnState && "animate-turn360"
-          } ${style}text-7xl float-right z-10`}
-          onAnimationEnd={() => setTurnState(false)}
-        >
-          +
-        </button>
-      )}
-    </>
-  );
+const Icon = ({ style = "", children }: Props) => {
+  return <>{children}</>;
 };
 
 export default Icon;
