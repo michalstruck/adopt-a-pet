@@ -41,7 +41,12 @@ const Navbar = () => {
               </Expandable.Icon>
             )}
           </ExpandableContext.Consumer>
-          <CSSTransition in={inProp} timeout={1} classNames="bodyTransition">
+          <CSSTransition
+            in={inProp}
+            timeout={4000}
+            classNames="bodyTransition"
+            unmountOnExit
+          >
             <Expandable.Body
               key="body"
               style="bg-red-200 opacity-70 text-right mt-auto "
