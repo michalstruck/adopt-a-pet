@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useContext, useCallback } from "react";
 import useBreedList from "../common/useBreedList";
+import usePet from "../common/usePet";
 import Results from "./Results";
 import ThemeContext from "../common/ThemeContext";
 import { Animal, Pet, PetAPIResponse } from "../common/APIResponsesTypes";
@@ -12,40 +13,26 @@ interface FormValues {
 }
 
 const animalsArray: Animal[] = ["bird", "cat", "dog", "rabbit", "reptile"];
-const defaultValues = { location: "", breed: "" }; // default to empty obj and evaluate in??
 
 const SearchParams = () => {
-  const { register, handleSubmit, watch } = useForm<FormValues>({
-    defaultValues,
-  });
-  const [pets, setPets] = useState<Pet[]>([]);
+  const { register, handleSubmit, watch } = useForm<FormValues>({});
+  const { pets, requestPets } = usePet();
   const [breeds] = useBreedList(watch("animal"));
   const [theme, setTheme] = useContext(ThemeContext);
-  const requestPets = useCallback(
-    async (data: FormValues) => {
-      const res = await fetch(
-        `http://pets-v2.dev-apis.com/pets?animal=${
-          data.animal || ""
-        }&location=${data.location || ""}&breed=${data.breed || ""}`
-      );
-      const json = (await res.json()) as PetAPIResponse;
 
-      setPets(json.pets);
-    },
-    [setPets]
-  );
-
-  useEffect(() => void requestPets(defaultValues), []); // eslint-disable-line react-hooks/exhaustive-deps
+  useEffect(() => void requestPets(), []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <div className="my-0 mx-auto w-11/12 flex flex-col items-center justify-center">
       <form
-        onSubmit={handleSubmit((data: FormValues) => requestPets(data))}
+        onSubmit={handleSubmit((data: FormValues) =>
+          requestPets(data.animal, data.location, data.breed)
+        )}
         className="flex flex-col
         justify-center items-center w-96 mb-10 rounded-lg bg-red-100 shadow-xl"
       >
         <label htmlFor="location" className="block mx-8 my-4">
-          Location{" "}
+          Location
           <input
             {...register("location")}
             type="text"
