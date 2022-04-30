@@ -7,7 +7,7 @@ const localCache: {
   [index: string]: string[];
 } = {};
 
-export default function useBreedList(animalInput?: Animal): [string[], Status] {
+const useBreedList = (animalInput?: Animal): [string[], Status] => {
   const [breedList, setBreedList] = useState([] as string[]);
   const [status, setStatus] = useState("unloaded" as Status);
 
@@ -36,4 +36,6 @@ export default function useBreedList(animalInput?: Animal): [string[], Status] {
   }, [animalInput, requestBreedList]);
 
   return [breedList, status];
-}
+};
+
+export default useBreedList;
