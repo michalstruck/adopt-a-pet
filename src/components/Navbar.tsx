@@ -11,13 +11,13 @@ const Navbar = () => {
     <div className="fixed w-full h-1/6 top-10 right-5">
       <div className="h-1/6 grid grid-cols-1 grid-rows-2 place-items-end">
         <Expandable
-          onExpand={(v: boolean): void => {
-            throw new Error("Function not implemented.");
+          onExpanded={(v) => {
+            throw new Error(`Value of ${v}. Function not implemented.`);
           }}
         >
           <ExpandableContext.Consumer>
             {({ expanded, toggleExpand }) => (
-              <Expandable.Icon style="">
+              <Expandable.Icon>
                 {
                   <button
                     onClick={

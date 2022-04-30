@@ -11,17 +11,20 @@ import Body from "./Body";
 
 interface Props {
   children: any;
-  onExpand: (v: boolean) => void;
+  onExpanded: (v: boolean) => void;
 }
 export const ExpandableContext = createContext<{
   expanded: boolean;
-  toggleExpand: () => void | React.ReactNode;
+  toggleExpand: () => void;
 }>({
   expanded: false,
   toggleExpand: () => {},
 });
 
-const Expandable = ({ children, onExpand }: Props) => {
+//onExpanded is a function that is triggered after body element is expanded. It passes an argument determining
+// whether the component is expanded (true) or collapsed (false)
+
+const Expandable = ({ children, onExpanded }: Props) => {
   const [expanded, setExpanded] = useState(false);
   const toggleExpand = () => setExpanded((prevExpanded) => !prevExpanded);
   const value = useMemo(
@@ -29,13 +32,14 @@ const Expandable = ({ children, onExpand }: Props) => {
     [expanded, toggleExpand]
   );
 
-  // const componentJustMounted = useRef(true);
-  // useEffect(() => {
-  //   // if (!componentJustMounted) {
-  //   //   onExpand(expanded);
-  //   // }
-  //   componentJustMounted.current = false;
-  // }, [expanded]);
+  const componentJustMounted = useRef(true);
+  useEffect(() => {
+    if (!componentJustMounted) {
+      onExpanded(expanded);
+    }
+    componentJustMounted.current = false;
+  }, [expanded]);
+
   return (
     <ExpandableContext.Provider value={value}>
       {children}

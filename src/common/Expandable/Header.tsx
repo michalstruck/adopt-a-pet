@@ -3,7 +3,7 @@ import { ExpandableContext } from "./Menu";
 
 interface Props {
   children: React.ReactNode;
-  style: string;
+  style?: string;
 }
 
 const Header = ({ children, style = "" }: Props) => {
