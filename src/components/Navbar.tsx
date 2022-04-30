@@ -8,7 +8,7 @@ const Navbar = () => {
   const [inProp, setInProp] = useState(false);
 
   return (
-    <div className="fixed w-full h-1/6 top-10 right-5">
+    <div className="fixed w-auto h-0 top-14 right-5">
       <div className="h-1/6 grid grid-cols-1 grid-rows-2 place-items-end">
         <Expandable
           onExpanded={(v) => {
@@ -51,12 +51,17 @@ const Navbar = () => {
               key="body"
               style="bg-red-200 opacity-70 text-right mt-auto "
             >
-              <p className="p-2">
-                Want to adopt a pet? Try on{" "}
-                <a className="underline" href="https://www.petfinder.com/">
-                  petfinder
-                </a>
-              </p>
+              <div className="p-2 text-left">
+                <section>
+                  <h1 className="text-3xl">Random pet | Pet adoption site</h1>
+                </section>
+                <p>
+                  Want to adopt a pet? Try on{" "}
+                  <a className="underline" href="https://www.petfinder.com/">
+                    petfinder
+                  </a>
+                </p>
+              </div>
             </Expandable.Body>
           </CSSTransition>
         </Expandable>
