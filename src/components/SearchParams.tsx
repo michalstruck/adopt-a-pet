@@ -1,6 +1,6 @@
-import React, { useEffect, useState, useContext, useCallback } from "react";
+import { useEffect, useContext } from "react";
 import useBreedList from "../common/useBreedList";
-import usePet from "../common/usePet";
+import usePet from "../common/small_hooks";
 import Results from "./Results";
 import ThemeContext from "../common/ThemeContext";
 import { Animal, Pet, PetAPIResponse } from "../common/APIResponsesTypes";
@@ -17,7 +17,7 @@ const animalsArray: Animal[] = ["bird", "cat", "dog", "rabbit", "reptile"];
 const SearchParams = () => {
   const { register, handleSubmit, watch } = useForm<FormValues>({});
   const { pets, requestPets } = usePet();
-  const [breeds] = useBreedList(watch("animal"));
+  const { breeds } = useBreedList(watch("animal"));
   const [theme, setTheme] = useContext(ThemeContext);
 
   useEffect(() => void requestPets(), []); // eslint-disable-line react-hooks/exhaustive-deps
@@ -57,11 +57,11 @@ const SearchParams = () => {
           Breed
           <select
             className="block w-80 shadow-lg rounded-md focus:border-blue-100 disabled:border-gray-400 "
-            disabled={!breeds.length}
+            disabled={!breeds?.length || undefined}
             {...register("breed")}
           >
             <option />
-            {breeds.map((breed) => (
+            {breeds?.map((breed: string) => (
               <option key={breed} value={breed}>
                 {breed}
               </option>
