@@ -2,23 +2,24 @@
 @tailwind components;
 @tailwind utilities;
 
-.bodyTransition-enter {
+.body-enter {
   opacity: 0;
   transform: scale(0.8);
 }
-.bodyTransition-enter-active {
+.body-enter-active {
   opacity: 0.7;
   transform: translateX(0);
   transition: opacity, transform 200ms;
 }
-.bodyTransition-exit {
+.body-exit {
   opacity: 0.7;
 }
-.bodyTransition-exit-active {
+.body-exit-active {
   opacity: 0;
   transform: scale(0.8);
   transition: opacity, transform 200ms;
 }
+
 @layer components {
   #modal {
     background-color: rgba(0, 0, 0, 0.9);
