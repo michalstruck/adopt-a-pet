@@ -47,7 +47,7 @@ const Navbar = () => {
           </ExpandableContext.Consumer>
           <CSSTransition
             in={state.inProp}
-            timeout={4000}
+            timeout={200}
             classNames="bodyTransition"
           >
             <Expandable.Body
