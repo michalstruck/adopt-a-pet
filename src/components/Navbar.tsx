@@ -8,6 +8,7 @@ import "../common/index.css";
 const Navbar = () => {
   const [state, setState] = useState({ turnState: false, inProp: false });
   const { randomize, randomPetId } = useRandomPetId();
+  console.log(randomPetId);
   return (
     <div className="fixed w-auto h-0 top-14 right-5">
       <div className="h-1/6 grid grid-cols-1 grid-rows-2 place-items-end">
@@ -25,7 +26,7 @@ const Navbar = () => {
                       state.turnState
                         ? () => {}
                         : () => {
-                            setState({ turnState: true, inProp: !expanded });
+                            setState({ turnState: false, inProp: !expanded });
                             toggleExpand();
                           }
                     }
@@ -44,38 +45,35 @@ const Navbar = () => {
               </Expandable.Icon>
             )}
           </ExpandableContext.Consumer>
-
-          <CSSTransition in={state.inProp} timeout={200} classNames="body">
+          <CSSTransition
+            in={state.inProp}
+            timeout={4000}
+            classNames="bodyTransition"
+          >
             <Expandable.Body
               key="body"
               style="bg-red-200 opacity-70 text-right mt-auto "
             >
               <div className="p-2 text-left">
-                <h1 className="text-4xl float-left font-semibold">
-                  Quick start
-                </h1>
-                <br />
-                <section className="float-left">
-                  <div className="text-3xl">
-                    Feeling lucky? Try a{" "}
-                    <button onClick={randomize} className="w-fit">
-                      {
-                        <Link
-                          to={`/details/${randomPetId}`}
-                          className="w-100% flex mt-7 mb-8 underline decoration-2"
-                        >
-                          random pet.
-                        </Link>
-                      }
-                    </button>
-                  </div>
-                  <footer className="text-lg">
-                    Want to adopt a pet? Try on{" "}
-                    <a className="underline" href="https://www.petfinder.com/">
-                      petfinder
-                    </a>
-                  </footer>
+                <section>
+                  <h1 onClick={randomize} className="text-3xl">
+                    {
+                      <Link
+                        to={`/details/${randomPetId}`}
+                        className="w-100% flex overflow-hidden mt-7 pb-8 border-b-black border-b-2"
+                      >
+                        Random pet
+                      </Link>
+                    }{" "}
+                    | Pet adoption site
+                  </h1>
                 </section>
+                <p>
+                  Want to adopt a pet? Try on{" "}
+                  <a className="underline" href="https://www.petfinder.com/">
+                    petfinder
+                  </a>
+                </p>
               </div>
             </Expandable.Body>
           </CSSTransition>

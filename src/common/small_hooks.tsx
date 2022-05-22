@@ -44,14 +44,13 @@ export const useRandomPetId = () => {
     ? breeds[Math.floor(randNums[1] * breeds.length)]
     : "";
   const query = useRequestPets(animal, "", randBreed, isSuccess);
-  const randomPetId = query.data?.pets?.[
-    Math.floor(randNums[2] * query.data.pets.length)
-  ]?.id
-    ? query.data?.pets?.[Math.floor(randNums[2] * query.data.pets.length)]?.id
-    : random(1, 23);
   return {
     ...query,
-    randomPetId,
+    randomPetId: query.data?.pets?.[
+      Math.floor(randNums[2] * query.data.pets.length)
+    ]?.id
+      ? query.data?.pets?.[Math.floor(randNums[2] * query.data.pets.length)]?.id
+      : random(1, 23),
     randomize,
   };
 };
