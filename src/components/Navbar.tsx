@@ -8,7 +8,6 @@ import "../common/index.css";
 const Navbar = () => {
   const [state, setState] = useState({ turnState: false, inProp: false });
   const { randomize, randomPetId } = useRandomPetId();
-  console.log(randomPetId);
   return (
     <div className="fixed w-auto h-0 top-14 right-5">
       <div className="h-1/6 grid grid-cols-1 grid-rows-2 place-items-end">
@@ -47,7 +46,7 @@ const Navbar = () => {
           </ExpandableContext.Consumer>
           <CSSTransition
             in={state.inProp}
-            timeout={200}
+            timeout={4000}
             classNames="bodyTransition"
           >
             <Expandable.Body

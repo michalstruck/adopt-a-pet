@@ -27,20 +27,22 @@ export const Carousel = ({
       h-96"
     >
       <img
+        data-testid="hero"
         src={images[active]}
         className="max-w-[45%] max-h-96 rounded-md shadow-lg "
         alt="animal"
       />
       <div className="w-6/12">
-        {images.map((photo: string | undefined, index: number) => (
+        {images.map((photo: string | undefined, i: number) => (
           <img
+            data-testid={`thumbnail${i}`}
             alt="img"
-            data-index={index}
+            data-index={i}
             onClick={handleIndexClick}
             key={photo}
             src={photo}
             className={
-              index === active
+              i === active
                 ? "float-left w-28 h-28 rounded-full shadow-2xl m-4 cursor-pointer border-2 border-solid border-black"
                 : "float-left w-28 h-28 rounded-full shadow-lg  m-4 cursor-pointer opacity-60"
             }
