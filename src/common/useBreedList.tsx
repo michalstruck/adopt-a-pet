@@ -1,5 +1,5 @@
 import { useQuery } from "react-query";
-import { Animal, BreedListAPIResponse, Pet } from "./APIResponsesTypes";
+import { Animal, BreedListAPIResponse } from "./APIResponsesTypes";
 
 const useBreedList = (animalInput?: Animal) => {
   const query = useQuery<BreedListAPIResponse>(["breedList", animalInput], () =>
@@ -8,7 +8,11 @@ const useBreedList = (animalInput?: Animal) => {
     )
   );
 
-  return { breeds: query.data?.breeds, animal: query.data?.animal, ...query };
+  return {
+    breeds: query.data?.breeds ? query.data?.breeds : [],
+    animal: query.data?.animal,
+    ...query,
+  };
 };
 
 export default useBreedList;

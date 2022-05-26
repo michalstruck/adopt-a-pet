@@ -3,7 +3,7 @@ import useBreedList from "../common/useBreedList";
 import usePet from "../common/small_hooks";
 import Results from "./Results";
 import ThemeContext from "../common/ThemeContext";
-import { Animal, Pet, PetAPIResponse } from "../common/APIResponsesTypes";
+import { Animal } from "../common/APIResponsesTypes";
 import { useForm } from "react-hook-form";
 
 interface FormValues {
@@ -17,7 +17,7 @@ const animalsArray: Animal[] = ["bird", "cat", "dog", "rabbit", "reptile"];
 const SearchParams = () => {
   const { register, handleSubmit, watch } = useForm<FormValues>({});
   const { pets, requestPets } = usePet();
-  const { breeds } = useBreedList(watch("animal"));
+  const { breeds } = useBreedList(watch("animal") as Animal);
   const [theme, setTheme] = useContext(ThemeContext);
 
   useEffect(() => void requestPets(), []); // eslint-disable-line react-hooks/exhaustive-deps

@@ -4,9 +4,6 @@ interface State {
   active: number;
 }
 
-interface Props {
-  images: string[];
-}
 export const Carousel = ({
   images = ["http://pets-images.dev-apis.com/pets/none.jpg"],
 }) => {
