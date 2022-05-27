@@ -15,8 +15,11 @@ test("lets users click on thumbnails to make them the hero", async () => {
   for (let i = 0; i < images.length; i++) {
     const image = images[i];
     const thumb = await carousel.findByTestId(`thumbnail${i}`);
+
     act(() => thumb.click());
+
     expect(hero.src).toContain(image);
+
     expect(thumb.classList.value).toBe(
       "float-left w-28 h-28 rounded-full shadow-2xl m-4 cursor-pointer border-2 border-solid border-black"
     );
