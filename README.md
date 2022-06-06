@@ -31,6 +31,7 @@ Adopt-a-pet is a web app I started building while following Intermediate React v
 - [React Query](https://react-query.tanstack.com/)
 - [react-hook-form](https://react-hook-form.com/)
 - [React Router](https://reactrouter.com/)
+- [TailwindCSS](https://tailwindcss.com/)
 
 in [TypeScript](https://www.typescriptlang.org/)
 
