@@ -4,13 +4,15 @@ import React, {
   useRef,
   useEffect,
   useMemo,
+  ReactNode,
+  useCallback,
 } from "react";
 import Header from "./Header";
 import Icon from "./Icon";
 import Body from "./Body";
 
-interface Props {
-  children: any;
+export interface mainProps {
+  children: ReactNode;
   onExpanded: (v: boolean) => void;
 }
 export const ExpandableContext = createContext<{
@@ -24,9 +26,12 @@ export const ExpandableContext = createContext<{
 //onExpanded is a function that is triggered after body element is expanded. It passes an argument determining
 // whether the component is expanded (true) or collapsed (false)
 
-const Expandable = ({ children, onExpanded }: Props) => {
+const Expandable = ({ children, onExpanded }: mainProps) => {
   const [expanded, setExpanded] = useState(false);
-  const toggleExpand = () => setExpanded((prevExpanded) => !prevExpanded);
+  const toggleExpand = useCallback(
+    () => setExpanded((prevExpanded) => !prevExpanded),
+    []
+  );
   const value = useMemo(
     () => ({ expanded, toggleExpand }),
     [expanded, toggleExpand]
