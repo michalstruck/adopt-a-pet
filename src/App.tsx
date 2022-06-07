@@ -12,7 +12,7 @@ const App = () => {
     <QueryClientProvider client={client}>
       <ThemeContext.Provider value={theme}>
         <div
-          className="px-0 pb-8 pt-24 m-0 min-w-fit"
+          className="px-0 pt-24 min-w-fit w-full h-fit"
           style={{
             background:
               "url(http://pets-images.dev-apis.com/pets/wallpaperA.jpg)",
