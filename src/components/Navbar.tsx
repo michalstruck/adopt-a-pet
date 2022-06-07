@@ -2,13 +2,11 @@ import React, { useState } from "react";
 import Expandable, { ExpandableContext } from "../common/Expandable/Menu";
 import { Link } from "react-router-dom";
 import { useRandomPetId } from "../common/small_hooks";
-import { useSpring, animated } from "@react-spring/web";
 import "../common/index.css";
 
 const Navbar = () => {
   const [turnState, setTurnState] = useState(false);
   const { randomize, randomPetId } = useRandomPetId();
-  const springProps = useSpring({ to: { opacity: 1 }, from: { opacity: 0 } });
 
   return (
     <div className="fixed w-auto h-0 top-14 right-5">
