@@ -8,23 +8,24 @@ interface Props {
 const Body = ({ children, style = "" }: Props) => {
   const { expanded } = useContext(ExpandableContext);
   const transitions = useTransition(expanded, {
-    from: { opacity: 0 },
-    enter: { opacity: 0.7 },
-    leave: { opacity: 0 },
-    delay: 10,
+    from: { opacity: 0, transform: "translateX(-5rem)", translateY: "5rem" },
+    enter: { opacity: 0.7, transform: "translateX(0)", translateY: "0rem" },
+    leave: { opacity: 0, transform: "translateX(-5rem)", translateY: "5rem" },
     config: config.molasses,
   });
 
-  return expanded
-    ? transitions(
-        (transitionStyles, item) =>
-          item && (
-            <animated.div style={transitionStyles} className={style}>
-              {children}
-            </animated.div>
-          )
+  return transitions(
+    (transitionStyles, item) =>
+      item && (
+        <animated.div
+          key="animationDiv"
+          style={transitionStyles}
+          className={style}
+        >
+          {children}
+        </animated.div>
       )
-    : null;
+  );
 };
 
 export default Body;
