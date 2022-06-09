@@ -1,13 +1,9 @@
 import React, { MouseEvent, useState } from "react";
 
-interface State {
-  active: number;
-}
-
 export const Carousel = ({
   images = ["http://pets-images.dev-apis.com/pets/none.jpg"],
 }) => {
-  const [highlight, setHighlight] = useState<State>({ active: 0 });
+  const [highlight, setHighlight] = useState({ active: 0 });
 
   const handleIndexClick = (event: MouseEvent<HTMLElement>) => {
     if (!(event.target instanceof HTMLElement)) return;

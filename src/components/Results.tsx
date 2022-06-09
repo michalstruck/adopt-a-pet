@@ -1,8 +1,8 @@
 import Pet from "./Pet";
-import React, { FunctionComponent } from "react";
+import React from "react";
 import { Pet as PetType } from "../common/APIResponsesTypes";
 
-const Results: FunctionComponent<{ pets: PetType[] }> = ({ pets }) => {
+const Results = ({ pets }: { pets: PetType[] }) => {
   return (
     <div
       className="h-auto  m-auto lg:w-[60rem] px-8 py-4 flex
