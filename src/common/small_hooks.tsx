@@ -1,4 +1,3 @@
-import { random } from "lodash";
 import { useState, useCallback } from "react";
 import { useQuery } from "react-query";
 import { PetAPIResponse, Pet, Animal } from "./APIResponsesTypes";
@@ -50,7 +49,7 @@ export const useRandomPetId = () => {
       Math.floor(randNums[2] * query.data.pets.length)
     ]?.id
       ? query.data?.pets?.[Math.floor(randNums[2] * query.data.pets.length)]?.id
-      : random(1, 23),
+      : Math.floor(Math.random() * 23),
     randomize,
   };
 };
