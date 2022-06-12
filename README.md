@@ -23,6 +23,15 @@
 [![Product Name Screen Shot][product-screenshot]](https://example.com)
 Adopt-a-pet is a web app I started building while following Intermediate React v3 course on Frontend Masters (thanks to github student pack). Since finishing the course, I rebuilt many parts of the app and added my own features.
 
+A short description of my additions/modifications:
+
+- every component typed with adherence to current best practices,
+- wrote react class components, then rewrote them to function components,
+- added an animated expandable menu using compound components pattern,
+- created an error boundary,
+- created several custom hooks which helped code readability,
+- used ContextAPI for global themes, expandable menu internal logic
+
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 ### Built With
@@ -32,6 +41,7 @@ Adopt-a-pet is a web app I started building while following Intermediate React v
 - [react-hook-form](https://react-hook-form.com/)
 - [React Router](https://reactrouter.com/)
 - [TailwindCSS](https://tailwindcss.com/)
+- [react-spring](https://react-spring.io/)
 
 in [TypeScript](https://www.typescriptlang.org/)
 
