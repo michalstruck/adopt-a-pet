@@ -8,7 +8,7 @@ export const Carousel = ({
   const handleIndexClick = (event: MouseEvent<HTMLElement>) => {
     if (!(event.target instanceof HTMLElement)) return;
     setHighlight({
-      active: +event.target.dataset.index!, //! tells ts im sure that dataset.value is present, ?? "" makes ts fall back to a default - "" - if dataset.index in undef/null
+      active: +event.target.dataset.index!,
     });
   };
   const { active } = highlight;
@@ -16,8 +16,7 @@ export const Carousel = ({
   return (
     <div
       className="flex 
-      items-center 
-      h-96"
+      items-center"
     >
       <img
         data-testid="hero"
@@ -36,8 +35,8 @@ export const Carousel = ({
             src={photo}
             className={
               i === active
-                ? "float-left w-28 h-28 rounded-full shadow-2xl m-4 cursor-pointer border-2 border-solid border-black"
-                : "float-left w-28 h-28 rounded-full shadow-lg  m-4 cursor-pointer opacity-60"
+                ? "float-left h-6/12 w-3/12 rounded-full shadow-2xl m-2 cursor-pointer border-2 border-solid border-black"
+                : "float-left h-6/12 w-3/12 rounded-full shadow-lg m-2 cursor-pointer opacity-60"
             }
           />
         ))}
