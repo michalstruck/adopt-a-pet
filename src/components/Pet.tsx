@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Pet as PetType } from "../common/APIResponsesTypes";
 
 const Pet = ({ name, animal, breed, images = [], location, id }: PetType) => {
-  let hero = "http://pets-images.dev-apis.com/pets/none.jpg";
+  let hero = "https://pets-images.dev-apis.com/pets/none.jpg";
   if (images.length) {
     hero = images[0];
   }

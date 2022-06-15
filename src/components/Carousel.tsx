@@ -1,7 +1,7 @@
 import React, { MouseEvent, useState } from "react";
 
 export const Carousel = ({
-  images = ["http://pets-images.dev-apis.com/pets/none.jpg"],
+  images = ["https://pets-images.dev-apis.com/pets/none.jpg"],
 }) => {
   const [highlight, setHighlight] = useState({ active: 0 });
 

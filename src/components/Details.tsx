@@ -30,7 +30,7 @@ export const Details = (props: RouteComponentProps<{ id: string }>) => {
     async function fetchPetAPI() {
       try {
         const res = await fetch(
-          `http://pets-v2.dev-apis.com/pets?id=${props.match.params.id}`
+          `https://pets-v2.dev-apis.com/pets?id=${props.match.params.id}`
         );
         const json = (await res.json()) as PetAPIResponse;
         const loading = { loading: false, showModal: false };
@@ -47,7 +47,7 @@ export const Details = (props: RouteComponentProps<{ id: string }>) => {
 
   const toggleModal = () => setInfo({ ...info, showModal: !info.showModal });
 
-  const adopt = () => (window.location.href = "http://bit.ly/pet-adopt");
+  const adopt = () => (window.location.href = "https://bit.ly/pet-adopt");
 
   const { animal, breed, city, state, description, name, images, showModal } =
     info;
