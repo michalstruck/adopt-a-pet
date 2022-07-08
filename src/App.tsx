@@ -5,6 +5,7 @@ import Details from "./components/Details";
 import { Link, BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import ThemeContext from "./common/ThemeContext";
 import { QueryClientProvider, QueryClient } from "react-query";
+
 const client = new QueryClient();
 const App = () => {
   const theme = useState("rgb(153 27 27)");
