@@ -20,7 +20,7 @@ const App = () => {
               "url(http://pets-images.dev-apis.com/pets/wallpaperA.jpg)",
           }}
         >
-          <Router basename="/adopt-a-pet">
+          <Router basename="/">
             <Navbar />
             <Link to="/">
               <img
