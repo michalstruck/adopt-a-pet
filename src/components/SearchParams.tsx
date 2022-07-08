@@ -83,7 +83,7 @@ const SearchParams = () => {
         </label>
         <button
           style={{ backgroundColor: theme }}
-          className="rounded-md 
+          className="rounded-md transition-all duration-75 active:translate-y-1
          shadow-lg shadow-stone-500 h-10 w-24 
          text-white container mx-36 my-8"
         >
