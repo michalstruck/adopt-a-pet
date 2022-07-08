@@ -64,7 +64,7 @@ const Navbar = () => {
                 </div>
                 <footer className="text-lg">
                   Want to adopt a pet? Try on{" "}
-                  <a className="underline" href="https://www.petfinder.com/">
+                  <a className="underline" href="http://www.petfinder.com/">
                     petfinder
                   </a>
                 </footer>

@@ -16,7 +16,7 @@ const App = () => {
           className="px-0 pt-24 min-w-fit w-full h-fit"
           style={{
             background:
-              "url(https://pets-images.dev-apis.com/pets/wallpaperA.jpg)",
+              "url(http://pets-images.dev-apis.com/pets/wallpaperA.jpg)",
           }}
         >
           <Router basename="/adopt-a-pet">
@@ -25,7 +25,7 @@ const App = () => {
               <img
                 alt="logo"
                 className="absolute top-2 left-2"
-                src="https://static.frontendmasters.com/resources/2019-05-02-complete-intro-react-v5/image-logo.png"
+                src="http://static.frontendmasters.com/resources/2019-05-02-complete-intro-react-v5/image-logo.png"
               />
             </Link>
             <Switch>

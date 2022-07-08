@@ -3,7 +3,7 @@ import { Animal, BreedListAPIResponse } from "./APIResponsesTypes";
 
 const useBreedList = (animalInput?: Animal) => {
   const query = useQuery<BreedListAPIResponse>(["breedList", animalInput], () =>
-    fetch(`https://pets-v2.dev-apis.com/breeds?animal=${animalInput}`).then(
+    fetch(`http://pets-v2.dev-apis.com/breeds?animal=${animalInput}`).then(
       (res) => res.json()
     )
   );

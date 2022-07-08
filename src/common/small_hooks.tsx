@@ -15,7 +15,7 @@ const useRequestPets = (
     ["requestPets", location, animal, breed],
     () =>
       fetch(
-        `https://pets-v2.dev-apis.com/pets?animal=${animal}&location=${location}&breed=${breed.replace(
+        `http://pets-v2.dev-apis.com/pets?animal=${animal}&location=${location}&breed=${breed.replace(
           " ",
           "+"
         )}`
@@ -60,7 +60,7 @@ const usePet = () => {
   const requestPets = useCallback(
     async (animal = "", location = "", breed = "") => {
       const res = await fetch(
-        `https://pets-v2.dev-apis.com/pets?animal=${animal}&location=${location}&breed=${breed}`
+        `http://pets-v2.dev-apis.com/pets?animal=${animal}&location=${location}&breed=${breed}`
       );
       const json: PetAPIResponse = await res.json();
 
