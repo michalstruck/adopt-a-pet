@@ -1,7 +1,7 @@
 {
   "name": "adopt-a-pet",
   "version": "0.1.0",
-  "homepage": "https://michalstruck.github.io/adopt-a-pet",
+  "homepage": "https://adopt-a-pet-chi.vercel.app/",
   "private": true,
   "dependencies": {
     "@react-spring/web": "^9.4.5",
