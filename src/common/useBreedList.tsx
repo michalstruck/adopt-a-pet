@@ -9,7 +9,7 @@ const useBreedList = (animalInput?: Animal) => {
   );
 
   return {
-    breeds: query.data?.breeds ? query.data?.breeds : [],
+    breeds: query.data?.breeds ?? [],
     animal: query.data?.animal,
     ...query,
   };
