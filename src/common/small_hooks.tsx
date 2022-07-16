@@ -59,14 +59,27 @@ const usePet = () => {
 
   const requestPets = useCallback(
     async (animal = "", location = "", breed = "") => {
+      const images = [
+        "https://images.dog.ceo/breeds/pug/n02110958_13364.jpg",
+        "https://images.dog.ceo/breeds/terrier-norfolk/n02094114_2990.jpg",
+        "https://images.dog.ceo/breeds/terrier-irish/n02093991_3403.jpg",
+        "https://images.dog.ceo/breeds/sheepdog-english/n02105641_4975.jpg",
+      ];
       const res = await fetch(
         `http://pets-v2.dev-apis.com/pets?animal=${animal}&location=${location}&breed=${breed}`
       );
       const json: PetAPIResponse = await res.json();
-
-      setPets(json.pets);
+      setPets(json.pets.map((pet: Pet) => ({ ...pet, images })));
+      console.log("old", pets);
+      // const petsNewImg = pets.map((pet: Pet) => ({ ...pet, images }));
+      // setPets(petsNewImg);
+      console.log(
+        "new",
+        pets.map((el) => ({ ...el, images }))
+      );
     },
-    [setPets]
+
+    [setPets, pets]
   );
   return {
     pets,
