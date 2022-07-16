@@ -70,8 +70,8 @@ export const Details = (props: RouteComponentProps<{ id: string }>) => {
             <button
               onClick={toggleModal}
               style={{ backgroundColor: theme[0] }}
-              className="rounded-md transition-all duration-75 active:translate-y-1 h-auto w-auto px-6 py-1
-              shadow-lg shadow-stone-500 text-white container my-8"
+              className="rounded-md transition-all duration-75 elevation-5 active:elevation-4 active:translate-y-1 h-auto w-auto px-6 py-1
+               text-white container my-8"
             >
               Adopt <br /> {name}
             </button>
@@ -88,7 +88,7 @@ export const Details = (props: RouteComponentProps<{ id: string }>) => {
                   {(theme) => (
                     <button
                       style={{ backgroundColor: theme[0] }}
-                      className="rounded-md transition-all duration-75 active:translate-y-1 h-10 w-24 
+                      className="rounded-md transition-all duration-75 elevation-5 active:elevation-4 active:translate-y-1 h-10 w-24 
                     text-white container mx-36 my-8"
                       onClick={adopt}
                     >
