@@ -34,14 +34,7 @@ export const Details = (props: RouteComponentProps<{ id: string }>) => {
         );
         const json = (await res.json()) as PetAPIResponse;
         const loading = { loading: false, showModal: false };
-        const images = [
-          "https://images.dog.ceo/breeds/pug/n02110958_13364.jpg",
-          "https://images.dog.ceo/breeds/terrier-norfolk/n02094114_2990.jpg",
-          "https://images.dog.ceo/breeds/terrier-irish/n02093991_3403.jpg",
-          "https://images.dog.ceo/breeds/sheepdog-english/n02105641_4975.jpg",
-        ];
-        setInfo(() => ({ ...loading, ...json.pets[0], images }));
-        console.log(info);
+        setInfo(Object.assign(loading, json.pets[0]));
       } catch (e) {
         console.error(e);
       }

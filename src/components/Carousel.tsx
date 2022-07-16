@@ -35,8 +35,8 @@ export const Carousel = ({
             src={photo}
             className={
               i === active
-                ? "float-left h-6/12 w-3/12 aspect-square rounded-full shadow-2xl m-2 cursor-pointer border-2 border-solid border-black"
-                : "float-left h-6/12 w-3/12 aspect-square rounded-full shadow-lg m-2 cursor-pointer opacity-60"
+                ? "float-left h-6/12 w-3/12 rounded-full shadow-2xl m-2 cursor-pointer border-2 border-solid border-black"
+                : "float-left h-6/12 w-3/12 rounded-full shadow-lg m-2 cursor-pointer opacity-60"
             }
           />
         ))}
