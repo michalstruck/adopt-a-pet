@@ -26,7 +26,7 @@ const App = () => {
               <img
                 alt="logo"
                 className="absolute top-2 left-2"
-                src="http://static.frontendmasters.com/resources/2019-05-02-complete-intro-react-v5/image-logo.png"
+                src="https://static.frontendmasters.com/resources/2019-05-02-complete-intro-react-v5/image-logo.png"
               />
             </Link>
             <Switch>
