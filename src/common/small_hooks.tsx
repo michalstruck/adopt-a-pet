@@ -15,7 +15,7 @@ const useRequestPets = (
     ["requestPets", location, animal, breed],
     () =>
       fetch(
-        `http://pets-v2.dev-apis.com/pets?animal=${animal}&location=${location}&breed=${breed.replace(
+        `https://pets-v2.dev-apis.com/pets?animal=${animal}&location=${location}&breed=${breed.replace(
           " ",
           "+"
         )}`
@@ -59,12 +59,25 @@ const usePet = () => {
 
   const requestPets = useCallback(
     async (animal = "", location = "", breed = "") => {
+      const fetchRand = async () => {
+        fetch("https://dog.ceo/api/breeds/image/random/2", {})
+          .then((res) => res.json())
+          .then(console.log);
+      };
+
       const res = await fetch(
         `http://pets-v2.dev-apis.com/pets?animal=${animal}&location=${location}&breed=${breed}`
       );
       const json: PetAPIResponse = await res.json();
+      //map is to counteract the broken api links
+      setPets(
+        json.pets.map((el) => ({
+          ...el,
+          images: ["https://images.dog.ceo/breeds/chow/n02112137_2181.jpg"],
+        }))
+      );
 
-      setPets(json.pets);
+      fetchRand();
     },
     [setPets]
   );
