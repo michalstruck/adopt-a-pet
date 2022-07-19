@@ -42,6 +42,7 @@ export const Details = (props: RouteComponentProps<{ id: string }>) => {
         abortController.abort();
       };
     }
+
     fetchPetAPI();
   }, [props.match.params.id]);
 
@@ -59,7 +60,10 @@ export const Details = (props: RouteComponentProps<{ id: string }>) => {
       rounded-lg 
       text-center mx-auto"
     >
-      <Carousel images={images} />
+      <Carousel
+      // disabled until image api is fixed
+      // images={images}
+      />
       <div>
         <h1 className="text-6xl font-bold text-center mt-8">{name}</h1>
         <h2 className="text-3xl font-bold mt-6">

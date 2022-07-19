@@ -1,9 +1,19 @@
-import React, { MouseEvent, useState } from "react";
+import React, { MouseEvent, useEffect, useState } from "react";
 
-export const Carousel = ({
-  images = ["http://pets-images.dev-apis.com/pets/none.jpg"],
-}) => {
+export const Carousel = () => {
   const [highlight, setHighlight] = useState({ active: 0 });
+  const [images, setImages] = useState([""]);
+
+  useEffect(() => {
+    const fetchRand = async () => {
+      fetch("https://dog.ceo/api/breeds/image/random/6")
+        .then((res) => res.json())
+        .then((data) => {
+          setImages(() => data.message);
+        });
+    };
+    fetchRand();
+  }, []);
 
   const handleIndexClick = (event: MouseEvent<HTMLElement>) => {
     if (!(event.target instanceof HTMLElement)) return;
@@ -12,7 +22,6 @@ export const Carousel = ({
     });
   };
   const { active } = highlight;
-
   return (
     <div
       className="flex 
@@ -21,7 +30,7 @@ export const Carousel = ({
       <img
         data-testid="hero"
         src={images[active]}
-        className="max-w-[45%] max-h-96 rounded-md shadow-lg "
+        className="max-w-[45%] aspect-square max-h-96 rounded-md shadow-lg "
         alt="animal"
       />
       <div className="flex flex-wrap flex-row">
@@ -35,8 +44,8 @@ export const Carousel = ({
             src={photo}
             className={
               i === active
-                ? "float-left h-6/12 w-3/12 rounded-full shadow-2xl m-2 cursor-pointer border-2 border-solid border-black"
-                : "float-left h-6/12 w-3/12 rounded-full shadow-lg m-2 cursor-pointer opacity-60"
+                ? "float-left aspect-square h-6/12 w-3/12 rounded-full shadow-2xl m-2 cursor-pointer transition-all duration-75 border-2 box-border border-solid border-black"
+                : "float-left aspect-square h-6/12 w-3/12 rounded-full shadow-lg m-2 cursor-pointer transition-all duration-75 opacity-70"
             }
           />
         ))}
