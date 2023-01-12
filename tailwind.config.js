@@ -7,8 +7,5 @@ module.exports = {
       },
     },
   },
-  plugins: [
-    require("@tailwindcss/forms"),
-    require("tailwindcss-elevation")(["responsive"]),
-  ],
+  plugins: [require("@tailwindcss/forms")],
 };
