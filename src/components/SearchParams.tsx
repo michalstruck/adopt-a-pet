@@ -1,9 +1,9 @@
 import { useEffect, useContext } from "react";
 import useBreedList from "../common/useBreedList";
-import usePet from "../common/small_hooks";
+import usePet from "../common/hooks";
 import Results from "./Results";
 import ThemeContext from "../common/ThemeContext";
-import { Animal } from "../common/APIResponsesTypes";
+import { Animal } from "../common/types/APIResponsesTypes";
 import { useForm } from "react-hook-form";
 
 interface FormValues {

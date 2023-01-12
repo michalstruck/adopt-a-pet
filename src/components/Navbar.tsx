@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Expandable, { ExpandableContext } from "../common/Expandable/Menu";
 import { Link } from "react-router-dom";
-import { useRandomPetId } from "../common/small_hooks";
+import { useRandomPetId } from "../common/hooks";
 import "../common/index.css";
 
 const Navbar = () => {
@@ -12,9 +12,7 @@ const Navbar = () => {
     <div className="fixed w-auto h-0 top-14 right-5">
       <div className="h-1/6 grid grid-cols-1 grid-rows-2 place-items-end">
         <Expandable
-          onExpanded={(v) => {
-            throw new Error(`Value of "${v}". Function not implemented.`);
-          }}
+          onExpanded={(onExpandedEvent) => console.log({ onExpandedEvent })}
         >
           <ExpandableContext.Consumer>
             {({ expanded, toggleExpand }) => (
