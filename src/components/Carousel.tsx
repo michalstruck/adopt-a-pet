@@ -24,7 +24,7 @@ export const Carousel = ({
         className="max-w-[45%] max-h-96 rounded-md shadow-lg "
         alt="animal"
       />
-      <div className="w-6/12">
+      <div className="flex flex-wrap flex-row">
         {images.map((photo: string | undefined, i: number) => (
           <img
             data-testid={`thumbnail${i}`}

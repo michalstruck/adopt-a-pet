@@ -1,6 +1,6 @@
 import Pet from "./Pet";
 import React from "react";
-import { Pet as PetType } from "../common/APIResponsesTypes";
+import { Pet as PetType } from "../common/types/APIResponsesTypes";
 
 const Results = ({ pets }: { pets: PetType[] }) => {
   return (
@@ -16,7 +16,7 @@ const Results = ({ pets }: { pets: PetType[] }) => {
           No pets could be found...check your internet connection?
         </div>
       ) : (
-        <div className="">
+        <div>
           {pets.map((pet) => {
             return (
               <Pet

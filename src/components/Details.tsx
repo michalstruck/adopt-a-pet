@@ -4,7 +4,7 @@ import Carousel from "./Carousel";
 import ErrorBoundary from "../common/ErrorBoundary";
 import ThemeContext from "../common/ThemeContext";
 import Modal from "../common/Modal";
-import { PetAPIResponse, Pet, Animal } from "../common/APIResponsesTypes";
+import { PetAPIResponse, Pet, Animal } from "../common/types/APIResponsesTypes";
 
 interface Pet1 extends Pet {
   loading: boolean;
