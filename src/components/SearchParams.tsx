@@ -15,34 +15,42 @@ interface FormValues {
 const animalsArray: Animal[] = ["bird", "cat", "dog", "rabbit", "reptile"];
 
 const SearchParams = () => {
-  const { register, handleSubmit, watch } = useForm<FormValues>({});
+  const { register, handleSubmit: submitForm, watch } = useForm<FormValues>({});
   const { pets, requestPets } = usePet();
   const { breeds } = useBreedList(watch("animal") as Animal);
   const [theme, setTheme] = useContext(ThemeContext);
 
   useEffect(() => void requestPets(), []); // eslint-disable-line react-hooks/exhaustive-deps
 
+  const handleSubmit = submitForm((data: FormValues) =>
+    requestPets(data.animal, data.location, data.breed)
+  );
+
   return (
-    <div className="my-0 mx-auto w-11/12 flex flex-col items-center justify-center">
+    <div className="flex flex-col items-center justify-center my-0 mx-auto">
       <form
-        onSubmit={handleSubmit((data: FormValues) =>
-          requestPets(data.animal, data.location, data.breed)
-        )}
-        className="flex flex-col
-        justify-center items-center w-96 mb-10 rounded-lg bg-red-100 shadow-xl"
+        onSubmit={handleSubmit}
+        className="flex flex-col justify-center items-start mb-10 px-12 
+        rounded-lg bg-red-100 shadow-xl"
       >
-        <label htmlFor="location" className="block mx-8 my-4">
+        <label
+          htmlFor="location"
+          className="flex flex-col self-stretch mx-8 my-4"
+        >
           Location
           <input
             {...register("location")}
             type="text"
-            className="block w-80 shadow-lg rounded-md focus:border-blue-100"
+            className="shadow-lg rounded-md focus:border-blue-100"
           />
         </label>
-        <label htmlFor="animal" className="block mx-8 my-4">
+        <label
+          htmlFor="animal"
+          className="flex flex-col self-stretch mx-8 my-4"
+        >
           Animal
           <select
-            className="block w-80 shadow-lg rounded-md focus:border-blue-100 "
+            className="shadow-lg rounded-md focus:border-blue-100 "
             {...register("animal")}
           >
             <option />
@@ -53,10 +61,10 @@ const SearchParams = () => {
             ))}
           </select>
         </label>
-        <label htmlFor="breed" className="block mx-8 my-4">
+        <label htmlFor="breed" className="flex flex-col self-stretch mx-8 my-4">
           Breed
           <select
-            className="block w-80 shadow-lg rounded-md focus:border-blue-100 disabled:border-gray-400 "
+            className="shadow-lg rounded-md focus:border-blue-100 disabled:border-gray-400 "
             disabled={!breeds?.length || undefined}
             {...register("breed")}
           >
@@ -68,24 +76,25 @@ const SearchParams = () => {
             ))}
           </select>
         </label>
-        <label htmlFor="theme" className="block mx-8 my-4">
+        <label htmlFor="theme" className="flex flex-col self-stretch mx-8 my-4">
           Theme
           <select
             value={theme}
             onChange={(e) => setTheme(e.target.value)}
             onBlur={(e) => setTheme(e.target.value)}
-            className="block w-80 shadow-lg rounded-md focus:border-blue-100 "
+            className="shadow-lg rounded-md focus:border-blue-100 "
           >
-            <option value="rgb(153 27 27)">adasiunia34</option>
-            <option value="peru">Peru</option>
-            <option value="mediumorchid">Medium Orchid</option>
+            <option value="rgb(153 27 27)">kororek kororowy</option>
+            <option value="peru">Peru reru</option>
+            <option value="mediumorchid">Medium Orchid łełe</option>
           </select>
         </label>
         <button
           style={{ backgroundColor: theme }}
-          className="rounded-md transition-all duration-75 active:translate-y-1
-         shadow-lg shadow-stone-500 h-10 w-24 
-         text-white container mx-36 my-8"
+          className="w-auto rounded-md my-8 py-2 px-8 self-center 
+          shadow-lg shadow-stone-500 text-white container 
+          transition-all duration-75 
+          active:translate-y-1 active:hue-rotate-15"
         >
           Submit
         </button>
