@@ -11,6 +11,13 @@ interface Pet1 extends Pet {
   showModal: boolean;
 }
 
+const handleState = (loading: Omit<Pet1, keyof Pet>, pet: Pet) => {
+  const getHttps = () =>
+    pet.images.map((image) => image.replace("http", "https"));
+  console.log(getHttps());
+  return Object.assign(loading, { ...pet, images: getHttps() });
+};
+
 export const Details = (props: RouteComponentProps<{ id: string }>) => {
   const [info, setInfo] = useState<Pet1>({
     loading: true,
@@ -21,7 +28,7 @@ export const Details = (props: RouteComponentProps<{ id: string }>) => {
     state: "",
     description: "",
     name: "",
-    images: [] as string[],
+    images: [""],
   });
 
   useEffect(() => {
@@ -30,11 +37,11 @@ export const Details = (props: RouteComponentProps<{ id: string }>) => {
     async function fetchPetAPI() {
       try {
         const res = await fetch(
-          `http://pets-v2.dev-apis.com/pets?id=${props.match.params.id}`
+          `https://pets-v2.dev-apis.com/pets?id=${props.match.params.id}`
         );
-        const json = (await res.json()) as PetAPIResponse;
+        const json: PetAPIResponse = await res.json();
         const loading = { loading: false, showModal: false };
-        setInfo(Object.assign(loading, json.pets[0]));
+        setInfo(handleState(loading, json.pets[0]));
       } catch (e) {
         console.error(e);
       }
@@ -61,8 +68,8 @@ export const Details = (props: RouteComponentProps<{ id: string }>) => {
       text-center mx-auto"
     >
       <Carousel
-      // disabled until image api is fixed
-      // images={images}
+        // disabled until image api is fixed
+        images={images}
       />
       <div>
         <h1 className="text-6xl font-bold text-center mt-8">{name}</h1>

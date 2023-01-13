@@ -1,19 +1,19 @@
 import React, { MouseEvent, useEffect, useState } from "react";
 
-export const Carousel = () => {
+export const Carousel = ({ images }: { images: string[] }) => {
   const [highlight, setHighlight] = useState({ active: 0 });
-  const [images, setImages] = useState([""]);
+  // const [images, setImages] = useState([""]);
 
-  useEffect(() => {
-    const fetchRand = async () => {
-      fetch("https://dog.ceo/api/breeds/image/random/6")
-        .then((res) => res.json())
-        .then((data) => {
-          setImages(() => data.message);
-        });
-    };
-    fetchRand();
-  }, []);
+  // useEffect(() => {
+  //   const fetchRand = async () => {
+  //     fetch("https://dog.ceo/api/breeds/image/random/6")
+  //       .then((res) => res.json())
+  //       .then((data) => {
+  //         setImages(() => data.message);
+  //       });
+  //   };
+  //   fetchRand();
+  // }, []);
 
   const handleIndexClick = (event: MouseEvent<HTMLElement>) => {
     if (!(event.target instanceof HTMLElement)) return;
