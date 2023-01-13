@@ -8,6 +8,7 @@ interface Props {
 }
 const Body = ({ children, style = "" }: Props) => {
   const { expanded } = useContext(ExpandableContext);
+
   const transitions = useTransition(expanded, {
     from: { opacity: 0, transform: "translateX(-5rem)", translateY: "5rem" },
     enter: { opacity: 0.7, transform: "translateX(0)", translateY: "0rem" },

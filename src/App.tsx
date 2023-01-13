@@ -14,7 +14,7 @@ const App = () => {
   return (
     <QueryClientProvider client={client}>
       <ThemeContext.Provider value={theme}>
-        <div className="bg-img px-0 pt-24 min-w-fit w-full h-fit">
+        <div className="bg-img px-0 pt-24 pb-64 min-w-fit">
           <Router basename="/">
             <Navbar />
             <Link to="/">
