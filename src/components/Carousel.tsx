@@ -1,39 +1,22 @@
 import React, { MouseEvent, useState } from "react";
 
 export const Carousel = ({ images }: { images: string[] }) => {
-  const [highlight, setHighlight] = useState({ active: 0 });
-  // const [images, setImages] = useState([""]);
-
-  // useEffect(() => {
-  //   const fetchRand = async () => {
-  //     fetch("https://dog.ceo/api/breeds/image/random/6")
-  //       .then((res) => res.json())
-  //       .then((data) => {
-  //         setImages(() => data.message);
-  //       });
-  //   };
-  //   fetchRand();
-  // }, []);
+  const [active, setActive] = useState(0);
 
   const handleIndexClick = (event: MouseEvent<HTMLElement>) => {
     if (!(event.target instanceof HTMLElement)) return;
-    setHighlight({
-      active: +event.target.dataset.index!,
-    });
+    setActive(+event.target.dataset.index!);
   };
-  const { active } = highlight;
+
   return (
-    <div
-      className="flex 
-      items-center"
-    >
+    <div className="flex items-center justify-center flex-col sm:flex-row sm:justify-start">
       <img
         data-testid="hero"
         src={images[active]}
-        className="max-w-[45%] aspect-square max-h-96 rounded-md shadow-lg "
+        className="aspect-square w-52 xl:w-96 lg:w-80 md:w-72 rounded-md shadow-lg "
         alt="animal"
       />
-      <div className="flex flex-wrap flex-row">
+      <div className="flex flex-wrap flex-row justify-center sm:justify-start">
         {images.map((photo: string | undefined, i: number) => (
           <img
             data-testid={`thumbnail${i}`}
@@ -43,10 +26,12 @@ export const Carousel = ({ images }: { images: string[] }) => {
             key={photo}
             src={photo}
             className={
-              i === active
-                ? "float-left aspect-square h-6/12 w-3/12 rounded-full shadow-2xl m-2 cursor-pointer transition-all duration-75 border-2 box-border border-solid border-black"
-                : "float-left aspect-square h-6/12 w-3/12 rounded-full shadow-lg m-2 cursor-pointer transition-all duration-75 opacity-70"
+              "xl:w-44 xl:h-44 lg:w-32 lg:h-32 w-24 h-24 min-width-24 rounded-full m-2 cursor-pointer transition-all duration-[50]" +
+              (i === active
+                ? "shadow-2xl outline-4 outline-black outline"
+                : "shadow-lg opacity-70")
             }
+            draggable={false}
           />
         ))}
       </div>
