@@ -11,6 +11,13 @@ interface Pet1 extends Pet {
   showModal: boolean;
 }
 
+const handleState = (loading: Omit<Pet1, keyof Pet>, pet: Pet) => {
+  const getHttps = () =>
+    pet.images.map((image) => image.replace("http", "https"));
+  console.log(getHttps());
+  return Object.assign(loading, { ...pet, images: getHttps() });
+};
+
 export const Details = (props: RouteComponentProps<{ id: string }>) => {
   const [info, setInfo] = useState<Pet1>({
     loading: true,
@@ -21,7 +28,7 @@ export const Details = (props: RouteComponentProps<{ id: string }>) => {
     state: "",
     description: "",
     name: "",
-    images: [] as string[],
+    images: [""],
   });
 
   useEffect(() => {
@@ -30,11 +37,11 @@ export const Details = (props: RouteComponentProps<{ id: string }>) => {
     async function fetchPetAPI() {
       try {
         const res = await fetch(
-          `http://pets-v2.dev-apis.com/pets?id=${props.match.params.id}`
+          `https://pets-v2.dev-apis.com/pets?id=${props.match.params.id}`
         );
-        const json = (await res.json()) as PetAPIResponse;
+        const json: PetAPIResponse = await res.json();
         const loading = { loading: false, showModal: false };
-        setInfo(Object.assign(loading, json.pets[0]));
+        setInfo(handleState(loading, json.pets[0]));
       } catch (e) {
         console.error(e);
       }
@@ -42,6 +49,7 @@ export const Details = (props: RouteComponentProps<{ id: string }>) => {
         abortController.abort();
       };
     }
+
     fetchPetAPI();
   }, [props.match.params.id]);
 
@@ -59,7 +67,10 @@ export const Details = (props: RouteComponentProps<{ id: string }>) => {
       rounded-lg 
       text-center mx-auto"
     >
-      <Carousel images={images} />
+      <Carousel
+        // disabled until image api is fixed
+        images={images}
+      />
       <div>
         <h1 className="text-6xl font-bold text-center mt-8">{name}</h1>
         <h2 className="text-3xl font-bold mt-6">
@@ -71,7 +82,7 @@ export const Details = (props: RouteComponentProps<{ id: string }>) => {
               onClick={toggleModal}
               style={{ backgroundColor: theme[0] }}
               className="rounded-md transition-all duration-75 active:translate-y-1 h-auto w-auto px-6 py-1
-              shadow-lg shadow-stone-500 text-white container my-8"
+               text-white container my-8"
             >
               Adopt <br /> {name}
             </button>
