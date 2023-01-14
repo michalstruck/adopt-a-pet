@@ -31,7 +31,7 @@ const SearchParams = () => {
     <div className="flex flex-col items-center justify-center my-0 mx-auto">
       <form
         onSubmit={handleSubmit}
-        className="flex flex-col justify-center items-start mb-10 px-12 
+        className="flex flex-col justify-center items-start mb-10 px-9 
         rounded-lg bg-red-100 shadow-xl"
       >
         <label

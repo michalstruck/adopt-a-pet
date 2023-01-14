@@ -1,21 +1,16 @@
 import Pet from "./Pet";
 import * as React from "react";
 import { Pet as PetType } from "../common/types/APIResponsesTypes";
+import ResultsPlaceholder from "./Results.placeholder.";
 
 const Results = ({ pets }: { pets: PetType[] }) => {
   return (
     <div
-      className="h-auto  m-auto lg:w-[60rem] px-8 py-4 flex
-      rounded-lg flex-col
-      bg-red-100 
-      shadow-xl
-      justify-center mb-4"
+      className={
+        "flex flex-col h-auto m-auto px-4 lg:w-[60rem] py-4 rounded-lg bg-red-100 shadow-xl justify-center mb-4"
+      }
     >
-      {!pets.length ? (
-        <div className="text-xl">
-          No pets could be found...check your internet connection?
-        </div>
-      ) : (
+      {pets.length ? (
         <div>
           {pets.map((pet) => {
             return (
@@ -31,6 +26,12 @@ const Results = ({ pets }: { pets: PetType[] }) => {
             );
           })}
         </div>
+      ) : (
+        <>
+          <ResultsPlaceholder />
+          <ResultsPlaceholder />
+          <ResultsPlaceholder />
+        </>
       )}
     </div>
   );

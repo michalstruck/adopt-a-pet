@@ -43,7 +43,7 @@ const Navbar = () => {
           </ExpandableContext.Consumer>
           <Expandable.Body
             key="body"
-            style="bg-red-200 opacity-70 text-right mt-auto "
+            tailwindStyle="bg-red-200 opacity-70 text-right mt-auto "
           >
             <div className="text-left p-3">
               <h1 className="text-4xl font-semibold">Quick start</h1>

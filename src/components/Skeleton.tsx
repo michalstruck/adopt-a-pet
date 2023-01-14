@@ -1,14 +1,12 @@
 type SkeletonProps = {
-  height: string;
-  width: string;
-  rounded?: "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | "full";
+  tailwindStyle?: string;
 };
 
-const Skeleton = ({ height, width, rounded = "full" }: SkeletonProps) => {
+const Skeleton = ({ tailwindStyle }: SkeletonProps) => {
   return (
     <div className="animate-pulse">
       <div
-        className={`h-${height} rounded-${rounded} w-${width} bg-gray-200 dark:bg-gray-700`}
+        className={`${tailwindStyle} bg-zinc-200 dark:bg-zinc-300 opacity-70`}
       />
     </div>
   );
