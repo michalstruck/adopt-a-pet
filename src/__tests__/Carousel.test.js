@@ -21,7 +21,7 @@ test("lets users click on thumbnails to make them the hero", async () => {
     expect(hero.src).toContain(image);
 
     expect(thumb.classList.value).toBe(
-      "float-left h-6/12 w-3/12 rounded-full shadow-2xl m-2 cursor-pointer border-2 border-solid border-black"
+      "xl:w-44 xl:h-44 lg:w-32 lg:h-32 w-24 h-24 min-width-24 rounded-full m-2 cursor-pointer transition-all duration-[50] shadow-2xl outline-4 outline-black outline"
     );
   }
 });
