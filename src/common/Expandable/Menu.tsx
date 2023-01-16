@@ -15,12 +15,15 @@ export interface mainProps {
   children: ReactNode;
   onExpanded: (v: boolean) => void;
 }
-export const ExpandableContext = createContext<{
+
+type ExpandableContextType = {
   expanded: boolean;
-  toggleExpand: () => void;
-}>({
+  toggleExpand: () => void | undefined;
+};
+
+export const ExpandableContext = createContext<ExpandableContextType>({
   expanded: false,
-  toggleExpand: () => {},
+  toggleExpand: () => undefined,
 });
 
 //onExpanded is a function that is triggered after body element is expanded. It passes an argument determining

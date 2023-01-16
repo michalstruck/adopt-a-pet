@@ -1,5 +1,6 @@
+import * as React from "react";
+import { useContext } from "react";
 import { config, useTransition, animated } from "@react-spring/web";
-import React, { useContext } from "react";
 import { ExpandableContext } from "./Menu";
 interface Props {
   children: React.ReactNode;

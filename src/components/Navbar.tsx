@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import * as React from "react";
+import { useState } from "react";
 import Expandable, { ExpandableContext } from "../common/Expandable/Menu";
 import { Link } from "react-router-dom";
 import { useRandomPetId } from "../common/hooks";
-import "../common/index.css";
+import "../index.css";
 
 const Navbar = () => {
   const [turnState, setTurnState] = useState(false);
@@ -21,7 +22,7 @@ const Navbar = () => {
                   <button
                     onClick={
                       turnState
-                        ? () => {}
+                        ? () => undefined
                         : () => {
                             setTurnState(true);
                             toggleExpand();

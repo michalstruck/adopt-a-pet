@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import * as React from "react";
+import { useState, useEffect } from "react";
 import { withRouter, RouteComponentProps } from "react-router-dom";
 import Carousel from "./Carousel";
 import ErrorBoundary from "../common/ErrorBoundary";
@@ -41,7 +42,7 @@ export const Details = (props: RouteComponentProps<{ id: string }>) => {
         );
         const json: PetAPIResponse = await res.json();
         const loading = { loading: false, showModal: false };
-        setInfo(handleState(loading, json.pets[0]));
+        loading.loading && setInfo(handleState(loading, json.pets[0]!));
       } catch (e) {
         console.error(e);
       }

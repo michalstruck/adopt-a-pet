@@ -1,3 +1,4 @@
+import * as React from "react";
 import { Component, ErrorInfo, ReactNode } from "react";
 import { Link, Redirect } from "react-router-dom";
 
@@ -6,9 +7,13 @@ interface State {
   redirect: boolean;
 }
 
-class ErrorBoundary extends Component<any, State> {
-  constructor() {
-    super(undefined);
+interface Props {
+  children: ReactNode;
+}
+
+class ErrorBoundary extends Component<Props, State> {
+  constructor(props: Props) {
+    super(props);
     this.state = { hasError: false, redirect: false };
   }
   static getDerivedStateFromError(): State {

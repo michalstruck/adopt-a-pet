@@ -1,5 +1,5 @@
 import Pet from "./Pet";
-import React from "react";
+import * as React from "react";
 import { Pet as PetType } from "../common/types/APIResponsesTypes";
 
 const Results = ({ pets }: { pets: PetType[] }) => {

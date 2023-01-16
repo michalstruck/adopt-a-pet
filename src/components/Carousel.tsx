@@ -1,4 +1,4 @@
-import React, { MouseEvent, useEffect, useState } from "react";
+import React, { MouseEvent, useState } from "react";
 
 export const Carousel = ({ images }: { images: string[] }) => {
   const [highlight, setHighlight] = useState({ active: 0 });

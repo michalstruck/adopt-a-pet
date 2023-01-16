@@ -2,6 +2,7 @@
  * @jest-environment jsdom
  */
 
+import * as React from "react";
 import { expect, test } from "@jest/globals";
 import { act, render } from "@testing-library/react";
 import Carousel from "../components/Carousel";
@@ -21,7 +22,7 @@ test("lets users click on thumbnails to make them the hero", async () => {
     expect(hero.src).toContain(image);
 
     expect(thumb.classList.value).toBe(
-      "float-left h-6/12 w-3/12 rounded-full shadow-2xl m-2 cursor-pointer border-2 border-solid border-black"
+      "float-left aspect-square h-6/12 w-3/12 rounded-full shadow-2xl m-2 cursor-pointer transition-all duration-75 border-2 box-border border-solid border-black"
     );
   }
 });

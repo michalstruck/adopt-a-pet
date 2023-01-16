@@ -1,5 +1,4 @@
-import React, { useContext } from "react";
-import { ExpandableContext } from "./Menu";
+import React from "react";
 
 interface Props {
   children: React.ReactNode;

@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import * as React from "react";
+import { useState } from "react";
 import Navbar from "./components/Navbar";
 import SearchParams from "./components/SearchParams";
 import Details from "./components/Details";
