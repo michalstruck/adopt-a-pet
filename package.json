@@ -18,12 +18,12 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "test:q": "react-scripts test --watchAll=false",
+    "test:q": "react-scripts test --watchAll=false .",
     "eject": "react-scripts eject",
-    "typecheck": "tsc --noEmit",
+    "typecheck": "eslint src/ --cache && tsc --noEmit",
+    "format": "prettier -w src",
     "predeploy": "npm run build",
-    "deploy": "vercel deploy",
-    "prepare": "husky install"
+    "deploy": "gh-pages -d build"
   },
   "jest": {
     "transform": {
@@ -41,6 +41,8 @@
       }
     },
     "extends": [
+      "react-app",
+      "react-app/jest",
       "eslint:recommended",
       "plugin:react/recommended",
       "plugin:react/jsx-runtime",
@@ -61,10 +63,7 @@
       "react/jsx-uses-react": "error",
       "react/react-in-jsx-scope": "error",
       "indent": "off",
-      "linebreak-style": [
-        "error",
-        "windows"
-      ],
+      "linebreak-style": "off",
       "quotes": [
         "error",
         "double"
@@ -77,8 +76,12 @@
   },
   "lint-staged": {
     "*.{tsx,ts}": [
+      "npm run format",
+      "npm run typecheck",
+      "npm run test:q"
+    ],
+    "*.{json, js}": [
       "prettier --write",
-      "eslint",
       "npm run test:q"
     ]
   },
