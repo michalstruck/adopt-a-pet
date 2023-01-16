@@ -2,6 +2,7 @@
  * @jest-environment jsdom
  */
 
+import * as React from "react";
 import { expect, test } from "@jest/globals";
 import { act, render } from "@testing-library/react";
 import Carousel from "../components/Carousel";

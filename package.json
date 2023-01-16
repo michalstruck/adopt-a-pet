@@ -12,28 +12,75 @@
     "react-query": "^3.38.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "5.0.0",
-    "typescript": "^4.6.3",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "test:q": "react-scripts test --watchAll=false",
     "eject": "react-scripts eject",
     "typecheck": "tsc --noEmit",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+    "deploy": "vercel deploy",
+    "prepare": "husky install"
   },
   "jest": {
     "transform": {
       "^.+\\.[t|j]sx?$": "babel-jest"
     }
+  },
+  "eslintConfig": {
+    "env": {
+      "browser": true,
+      "es6": true
+    },
+    "settings": {
+      "react": {
+        "version": "18.1.0"
+      }
+    },
+    "extends": [
+      "eslint:recommended",
+      "plugin:react/recommended",
+      "plugin:react/jsx-runtime",
+      "plugin:@typescript-eslint/recommended"
+    ],
+    "overrides": [],
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+      "ecmaVersion": "latest",
+      "sourceType": "module"
+    },
+    "plugins": [
+      "react",
+      "@typescript-eslint",
+      "react-hooks"
+    ],
+    "rules": {
+      "react/jsx-uses-react": "error",
+      "react/react-in-jsx-scope": "error",
+      "indent": "off",
+      "linebreak-style": [
+        "error",
+        "windows"
+      ],
+      "quotes": [
+        "error",
+        "double"
+      ],
+      "semi": [
+        "error",
+        "always"
+      ]
+    }
+  },
+  "lint-staged": {
+    "*.{tsx,ts}": [
+      "prettier --write",
+      "eslint",
+      "npm run test:q"
+    ]
   },
   "browserslist": {
     "production": [
@@ -48,6 +95,7 @@
     ]
   },
   "devDependencies": {
+    "@babel/eslint-parser": "^7.19.1",
     "@babel/plugin-proposal-class-properties": "^7.17.12",
     "@babel/preset-env": "^7.18.0",
     "@babel/preset-react": "^7.17.12",
@@ -60,14 +108,22 @@
     "@types/react": "^18.0.12",
     "@types/react-dom": "^18.0.5",
     "@types/react-router-dom": "^5.3.3",
+    "@typescript-eslint/eslint-plugin": "^5.48.1",
+    "@typescript-eslint/parser": "^5.48.1",
     "autoprefixer": "^10.4.4",
     "babel-jest": "^28.1.0",
+    "eslint": "^8.32.0",
+    "eslint-plugin-react": "^7.32.0",
     "gh-pages": "^4.0.0",
+    "husky": "^8.0.0",
     "jest": "^28.1.0",
     "jest-fetch-mock": "^3.0.3",
+    "lint-staged": "^13.1.0",
     "parcel": "^2.5.0",
     "postcss": "^8.4.12",
+    "prettier": "2.8.3",
     "react-test-renderer": "^18.1.0",
-    "tailwindcss": "^3.0.23"
+    "tailwindcss": "^3.0.23",
+    "typescript": "^4.6.3"
   }
 }

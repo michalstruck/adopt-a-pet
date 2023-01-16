@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import * as React from "react";
+import { useState, useEffect } from "react";
 import { withRouter, RouteComponentProps } from "react-router-dom";
 import Carousel from "./Carousel";
 import ErrorBoundary from "../common/ErrorBoundary";
