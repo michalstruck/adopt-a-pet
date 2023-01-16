@@ -1,3 +1,4 @@
+import * as React from "react";
 import Divider from "./Divider";
 import Skeleton from "./Skeleton";
 
