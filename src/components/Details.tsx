@@ -42,7 +42,7 @@ export const Details = (props: RouteComponentProps<{ id: string }>) => {
         );
         const json: PetAPIResponse = await res.json();
         const loading = { loading: false, showModal: false };
-        setInfo(handleState(loading, json.pets[0]));
+        loading.loading && setInfo(handleState(loading, json.pets[0]!));
       } catch (e) {
         console.error(e);
       }

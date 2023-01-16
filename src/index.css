@@ -4,7 +4,7 @@
 
 @layer components {
   .bg-img {
-    background-image: url("./Bg.jpg");
+    background-image: url("./Background.jpg");
   }
 
   #modal {

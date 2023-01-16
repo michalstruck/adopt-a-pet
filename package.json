@@ -20,7 +20,7 @@
     "test": "react-scripts test",
     "test:q": "react-scripts test --watchAll=false .",
     "eject": "react-scripts eject",
-    "typecheck": "eslint src/ --cache && tsc --noEmit",
+    "typecheck": "eslint src/ --cache && bash -c tsc --project tsconfig.json --noEmit ",
     "format": "prettier -w src",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
@@ -42,7 +42,6 @@
     },
     "extends": [
       "react-app",
-      "react-app/jest",
       "eslint:recommended",
       "plugin:react/recommended",
       "plugin:react/jsx-runtime",

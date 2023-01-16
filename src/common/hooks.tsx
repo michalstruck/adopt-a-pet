@@ -16,12 +16,13 @@ export const useRandomPetId = () => {
     setRandomNums([Math.random(), Math.random(), Math.random()]);
 
   const randomAnimal =
-    animalsArray[Math.floor(randomNums[0] * animalsArray.length)];
+    // TODO: fix randomNums being possibly undefined type error
+    animalsArray[Math.floor(randomNums[0] ?? 0.54 * animalsArray.length)];
 
   const { breeds, animal, isSuccess } = useBreedList(randomAnimal);
 
   const randomBreed = breeds
-    ? breeds[Math.floor(randomNums[1] * breeds.length)]
+    ? breeds[Math.floor(randomNums[1] ?? 0.37 * breeds.length)]
     : "";
 
   const query = useRequestPets(animal, "", randomBreed, isSuccess);
@@ -29,8 +30,9 @@ export const useRandomPetId = () => {
   return {
     ...query,
     randomPetId:
-      query.data?.pets[Math.floor(randomNums[2] * query.data.pets.length)].id ??
-      Math.floor(Math.random() * 23), //the fallback Math.random()*23 is this value because I admire Michael Jordan.
+      query.data?.pets[
+        Math.floor(randomNums[2] ?? 0.72 * query.data.pets.length)
+      ].id ?? Math.floor(Math.random() * 23), //the fallback Math.random()*23 is this value because I admire Michael Jordan.
     randomize,
   };
 };
