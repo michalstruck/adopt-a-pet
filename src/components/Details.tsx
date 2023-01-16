@@ -1,65 +1,27 @@
 import * as React from "react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { withRouter, RouteComponentProps } from "react-router-dom";
 import Carousel from "./Carousel";
 import ErrorBoundary from "../common/ErrorBoundary";
 import ThemeContext from "../common/ThemeContext";
 import Modal from "../common/Modal";
-import { PetAPIResponse, Pet, Animal } from "../common/types/APIResponsesTypes";
-
-interface Pet1 extends Pet {
-  loading: boolean;
-  showModal: boolean;
-}
-
-const handleState = (loading: Omit<Pet1, keyof Pet>, pet: Pet) => {
-  const getHttps = () =>
-    pet.images.map((image) => image.replace("http", "https"));
-  console.log(getHttps());
-  return Object.assign(loading, { ...pet, images: getHttps() });
-};
+import usePetDetails from "../hooks/usePetDetails";
+import DetailsPlaceholder from "./Details.placeholder";
 
 export const Details = (props: RouteComponentProps<{ id: string }>) => {
-  const [info, setInfo] = useState<Pet1>({
-    loading: true,
-    showModal: false,
-    animal: "" as Animal,
-    breed: "",
-    city: "",
-    state: "",
-    description: "",
-    name: "",
-    images: [""],
-  });
+  const [showModal, setShowModal] = useState(false);
 
-  useEffect(() => {
-    const abortController = new AbortController();
-
-    async function fetchPetAPI() {
-      try {
-        const res = await fetch(
-          `https://pets-v2.dev-apis.com/pets?id=${props.match.params.id}`
-        );
-        const json: PetAPIResponse = await res.json();
-        const loading = { loading: false, showModal: false };
-        loading.loading && setInfo(handleState(loading, json.pets[0]!));
-      } catch (e) {
-        console.error(e);
-      }
-      return () => {
-        abortController.abort();
-      };
-    }
-
-    fetchPetAPI();
-  }, [props.match.params.id]);
-
-  const toggleModal = () => setInfo({ ...info, showModal: !info.showModal });
-
+  const toggleModal = () => setShowModal((prev) => !prev);
   const adopt = () => (window.location.href = "http://bit.ly/pet-adopt");
 
-  const { animal, breed, city, state, description, name, images, showModal } =
-    info;
+  const { data, isLoading, isError } = usePetDetails(props.match.params.id);
+
+  if (isLoading || isError) return <></>;
+
+  if (!data) return <DetailsPlaceholder />;
+
+  const { animal, breed, city, state, description, name, images } = data;
+
   return (
     <div
       className="w-10/12 p-4 
@@ -68,10 +30,7 @@ export const Details = (props: RouteComponentProps<{ id: string }>) => {
       rounded-lg 
       text-center mx-auto"
     >
-      <Carousel
-        // disabled until image api is fixed
-        images={images}
-      />
+      <Carousel images={images} />
       <div>
         <h1 className="text-6xl font-bold text-center mt-8">{name}</h1>
         <h2 className="text-3xl font-bold mt-6">
@@ -130,8 +89,6 @@ export const Details = (props: RouteComponentProps<{ id: string }>) => {
     </div>
   );
 };
-
-// const DetailsWithRouter = withRouter(Details);
 
 const DetailsWithRouter = withRouter(Details);
 

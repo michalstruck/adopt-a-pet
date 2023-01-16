@@ -1,9 +1,11 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
-import { Pet as PetType } from "../common/types/APIResponsesTypes";
+import { Pet as IPet } from "../common/types/APIResponsesTypes";
 import Divider from "./Divider";
 
-const Pet = ({ name, animal, breed, images = [], location, id }: PetType) => {
+type PetProps = Omit<IPet, "description" | "city" | "state">;
+
+const Pet = ({ name, animal, breed, images = [], location, id }: PetProps) => {
   let hero = "http://pets-images.dev-apis.com/pets/none.jpg";
 
   if (images.length) {

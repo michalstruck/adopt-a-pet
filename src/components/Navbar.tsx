@@ -2,13 +2,13 @@ import * as React from "react";
 import { useState } from "react";
 import Expandable, { ExpandableContext } from "../common/Expandable/Menu";
 import { Link } from "react-router-dom";
-import { useRandomPetId } from "../common/hooks";
+import useRandomPetById from "../hooks/useRandomPetById";
 import "../index.css";
 import Divider from "./Divider";
 
 const Navbar = () => {
   const [turnState, setTurnState] = useState(false);
-  const { randomize, randomPetId } = useRandomPetId();
+  const { randomize, randomPetId } = useRandomPetById();
 
   return (
     <div className="fixed w-auto h-0 top-0 right-5 z-10">

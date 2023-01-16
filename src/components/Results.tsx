@@ -1,9 +1,9 @@
-import Pet from "./Pet";
 import * as React from "react";
-import { Pet as PetType } from "../common/types/APIResponsesTypes";
+import Pet from "./Pet";
+import { Pet as IPet } from "../common/types/APIResponsesTypes";
 import ResultsPlaceholder from "./Results.placeholder.";
 
-const Results = ({ pets }: { pets: PetType[] }) => {
+const Results = ({ pets }: { pets: IPet[] }) => {
   return (
     <div
       className={

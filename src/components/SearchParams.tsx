@@ -1,36 +1,68 @@
 import * as React from "react";
-import { useEffect, useContext } from "react";
-import useBreedList from "../common/useBreedList";
-import usePet from "../common/hooks";
+import { useContext, useState } from "react";
+import useBreedList from "../hooks/useBreedList";
 import Results from "./Results";
 import ThemeContext from "../common/ThemeContext";
 import { Animal } from "../common/types/APIResponsesTypes";
 import { useForm } from "react-hook-form";
+import useRequestPets from "../hooks/useRequestPets";
 
 interface FormValues {
-  location: string | undefined;
-  animal?: Animal;
-  breed: string | undefined;
+  location: string;
+  animal?: Animal | "";
+  breed: string;
 }
 
 const animalsArray: Animal[] = ["bird", "cat", "dog", "rabbit", "reptile"];
 
 const SearchParams = () => {
-  const { register, handleSubmit: submitForm, watch } = useForm<FormValues>({});
-  const { pets, requestPets } = usePet();
+  const { register, watch, handleSubmit } = useForm<FormValues>({
+    defaultValues: {
+      animal: "",
+      location: "",
+      breed: "",
+    },
+    mode: "onSubmit",
+    reValidateMode: "onSubmit",
+  });
+
+  const [submitData, setSubmitData] = useState<FormValues>({
+    location: "",
+    animal: "",
+    breed: "",
+  });
+
+  const { data, isLoading, isError } = useRequestPets(
+    submitData.location,
+    submitData.animal,
+    submitData.breed
+  );
+
   const { breeds } = useBreedList(watch("animal") as Animal);
   const [theme, setTheme] = useContext(ThemeContext);
 
-  useEffect(() => void requestPets(), []); // eslint-disable-line react-hooks/exhaustive-deps
+  // TODO: create screens for these cases
 
-  const handleSubmit = submitForm((data: FormValues) =>
-    requestPets(data.animal, data.location, data.breed)
-  );
+  if (isLoading) {
+    return <h1>Loading...</h1>;
+  }
+
+  if (isError) {
+    return <h1>Error!</h1>;
+  }
+
+  if (!data) {
+    return <h1>Something went wrong</h1>;
+  }
+  console.log(submitData);
+  const onSubmit = (submitData: FormValues) => {
+    setSubmitData(submitData);
+  };
 
   return (
     <div className="flex flex-col items-center justify-center my-0 mx-auto">
       <form
-        onSubmit={handleSubmit}
+        onSubmit={handleSubmit(onSubmit)}
         className="flex flex-col justify-center items-start mb-10 px-9 
         rounded-lg bg-red-100 shadow-xl"
       >
@@ -100,7 +132,7 @@ const SearchParams = () => {
           Submit
         </button>
       </form>
-      <Results pets={pets} />
+      <Results pets={data} />
     </div>
   );
 };

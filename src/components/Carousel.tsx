@@ -1,12 +1,16 @@
 import React, { MouseEvent, useState } from "react";
+import CarouselPlaceholder from "./Carousel.placeholder";
 
-export const Carousel = ({ images }: { images: string[] }) => {
+export const Carousel = ({ images }: { images: string[] | undefined }) => {
   const [active, setActive] = useState(0);
 
   const handleIndexClick = (event: MouseEvent<HTMLElement>) => {
     if (!(event.target instanceof HTMLElement)) return;
     setActive(+event.target.dataset.index!);
   };
+
+  // TODO: add placeholder
+  if (!images) return <CarouselPlaceholder />;
 
   return (
     <div className="flex items-center justify-center flex-col sm:flex-row sm:justify-start">
