@@ -30,60 +30,6 @@
       "^.+\\.[t|j]sx?$": "babel-jest"
     }
   },
-  "eslintConfig": {
-    "env": {
-      "browser": true,
-      "es6": true
-    },
-    "settings": {
-      "react": {
-        "version": "18.1.0"
-      }
-    },
-    "extends": [
-      "react-app",
-      "eslint:recommended",
-      "plugin:react/recommended",
-      "plugin:react/jsx-runtime",
-      "plugin:@typescript-eslint/recommended"
-    ],
-    "overrides": [],
-    "parser": "@typescript-eslint/parser",
-    "parserOptions": {
-      "ecmaVersion": "latest",
-      "sourceType": "module"
-    },
-    "plugins": [
-      "react",
-      "@typescript-eslint",
-      "react-hooks"
-    ],
-    "rules": {
-      "react/jsx-uses-react": "error",
-      "react/react-in-jsx-scope": "error",
-      "indent": "off",
-      "linebreak-style": "off",
-      "quotes": [
-        "error",
-        "double"
-      ],
-      "semi": [
-        "error",
-        "always"
-      ]
-    }
-  },
-  "lint-staged": {
-    "*.{tsx,ts}": [
-      "npm run format",
-      "npm run typecheck",
-      "npm run test:q"
-    ],
-    "*.{json, js}": [
-      "prettier --write",
-      "npm run test:q"
-    ]
-  },
   "browserslist": {
     "production": [
       ">0.2%",
