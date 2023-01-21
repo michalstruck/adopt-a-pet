@@ -35,7 +35,7 @@ class ErrorBoundary extends Component<Props, State> {
       return (
         <div className="grid h-screen w-screen place-items-center">
           <h1 className="text-2xl font-bold ">
-            This listing has an error.{" "}
+            This listing has an error.{" \n"}
             <Link to="/">
               <u>Click here</u>
             </Link>{" "}
