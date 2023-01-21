@@ -4,10 +4,11 @@ import { config, useTransition, animated } from "@react-spring/web";
 import { ExpandableContext } from "./Menu";
 interface Props {
   children: React.ReactNode;
-  style: string;
+  tailwindStyle: string;
 }
-const Body = ({ children, style = "" }: Props) => {
+const Body = ({ children, tailwindStyle = "" }: Props) => {
   const { expanded } = useContext(ExpandableContext);
+
   const transitions = useTransition(expanded, {
     from: { opacity: 0, transform: "translateX(-5rem)", translateY: "5rem" },
     enter: { opacity: 0.7, transform: "translateX(0)", translateY: "0rem" },
@@ -21,7 +22,7 @@ const Body = ({ children, style = "" }: Props) => {
         <animated.div
           key="animationDiv"
           style={transitionStyles}
-          className={style}
+          className={tailwindStyle}
         >
           {children}
         </animated.div>

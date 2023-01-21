@@ -2,16 +2,17 @@ import * as React from "react";
 import { useState } from "react";
 import Expandable, { ExpandableContext } from "../common/Expandable/Menu";
 import { Link } from "react-router-dom";
-import { useRandomPetId } from "../common/hooks";
+import useRandomPetById from "../hooks/useRandomPetById";
 import "../index.css";
+import Divider from "./Divider";
 
 const Navbar = () => {
   const [turnState, setTurnState] = useState(false);
-  const { randomize, randomPetId } = useRandomPetId();
+  const { randomize, randomPetId } = useRandomPetById();
 
   return (
-    <div className="fixed w-auto h-0 top-14 right-5">
-      <div className="h-1/6 grid grid-cols-1 grid-rows-2 place-items-end">
+    <div className="fixed top-0 right-5 z-10 h-0 w-auto">
+      <div className="flex flex-col justify-start self-start">
         <Expandable
           onExpanded={(onExpandedEvent) => console.log({ onExpandedEvent })}
         >
@@ -32,7 +33,7 @@ const Navbar = () => {
                       setTimeout(() => setTurnState(false), 10)
                     }
                     className={`${turnState ? "animate-turn360" : ""}
-                text-7xl float-right pr-1 z-10`}
+                float-right text-7xl`}
                   >
                     {expanded ? "‒" /* it's the figure dash */ : "+"}
                   </button>
@@ -42,27 +43,55 @@ const Navbar = () => {
           </ExpandableContext.Consumer>
           <Expandable.Body
             key="body"
-            style="bg-red-200 opacity-70 text-right mt-auto "
+            tailwindStyle="bg-red-200 opacity-70 text-right mt-auto "
           >
-            <div className="p-2 text-left">
-              <h1 className="text-4xl float-left font-semibold">Quick start</h1>
+            <div className="p-3 text-left">
+              <h1 className="text-4xl font-semibold">Quick start</h1>
               <br />
-              <section className="float-left">
+              <section>
                 <div className="text-3xl">
                   Feeling lucky? Try a{" "}
-                  <button onClick={randomize} className="w-fit">
-                    {
-                      <Link
-                        to={`/details/${randomPetId}`}
-                        className="w-100% flex mt-7 mb-8 underline decoration-2"
-                      >
-                        random pet.
-                      </Link>
-                    }
+                  <button className="w-fit">
+                    <Link
+                      to={`/details/${randomPetId}`}
+                      className="flex underline decoration-1"
+                      onClick={randomize}
+                    >
+                      random pet.
+                    </Link>
                   </button>
                 </div>
+                <div className="mt-3 mb-1 w-4/5">
+                  <Divider />
+                </div>
+                <div className="text-3xl">
+                  Check out our cutest pets
+                  <div className="flex flex-col">
+                    <Link
+                      to={`/details/${0}`}
+                      className="flex pl-4 underline decoration-1"
+                    >
+                      - Gizela
+                    </Link>
+                    <Link
+                      to={`/details/${5}`}
+                      className="flex pl-4 underline decoration-1"
+                    >
+                      - Sudo
+                    </Link>
+                    <Link
+                      to={`/details/${4}`}
+                      className="flex pl-4 underline decoration-1"
+                    >
+                      - Beam
+                    </Link>
+                  </div>
+                </div>
+                <div className="mt-3 mb-1 w-4/5">
+                  <Divider />
+                </div>
                 <footer className="text-lg">
-                  Want to adopt a pet? Try on{" "}
+                  Want to adopt a real pet? Try on{" "}
                   <a className="underline" href="http://www.petfinder.com/">
                     petfinder
                   </a>

@@ -1,39 +1,26 @@
 import React, { MouseEvent, useState } from "react";
+import CarouselPlaceholder from "./Carousel.placeholder";
 
-export const Carousel = ({ images }: { images: string[] }) => {
-  const [highlight, setHighlight] = useState({ active: 0 });
-  // const [images, setImages] = useState([""]);
-
-  // useEffect(() => {
-  //   const fetchRand = async () => {
-  //     fetch("https://dog.ceo/api/breeds/image/random/6")
-  //       .then((res) => res.json())
-  //       .then((data) => {
-  //         setImages(() => data.message);
-  //       });
-  //   };
-  //   fetchRand();
-  // }, []);
+export const Carousel = ({ images }: { images: string[] | undefined }) => {
+  const [active, setActive] = useState(0);
 
   const handleIndexClick = (event: MouseEvent<HTMLElement>) => {
     if (!(event.target instanceof HTMLElement)) return;
-    setHighlight({
-      active: +event.target.dataset.index!,
-    });
+    setActive(+event.target.dataset.index!);
   };
-  const { active } = highlight;
+
+  // TODO: add placeholder
+  if (!images) return <CarouselPlaceholder />;
+
   return (
-    <div
-      className="flex 
-      items-center"
-    >
+    <div className="flex flex-col items-center justify-center sm:flex-row sm:justify-start">
       <img
         data-testid="hero"
         src={images[active]}
-        className="max-w-[45%] aspect-square max-h-96 rounded-md shadow-lg "
+        className="aspect-square w-52 rounded-md shadow-lg md:w-72 lg:w-80 xl:w-96 "
         alt="animal"
       />
-      <div className="flex flex-wrap flex-row">
+      <div className="flex flex-row flex-wrap justify-center sm:justify-start">
         {images.map((photo: string | undefined, i: number) => (
           <img
             data-testid={`thumbnail${i}`}
@@ -43,10 +30,12 @@ export const Carousel = ({ images }: { images: string[] }) => {
             key={photo}
             src={photo}
             className={
-              i === active
-                ? "float-left aspect-square h-6/12 w-3/12 rounded-full shadow-2xl m-2 cursor-pointer transition-all duration-75 border-2 box-border border-solid border-black"
-                : "float-left aspect-square h-6/12 w-3/12 rounded-full shadow-lg m-2 cursor-pointer transition-all duration-75 opacity-70"
+              "min-width-24 m-2 h-24 w-24 cursor-pointer rounded-full transition-all duration-[50] lg:h-32 lg:w-32 xl:h-44 xl:w-44 " +
+              (i === active
+                ? "shadow-2xl outline outline-4 outline-black"
+                : "opacity-70 shadow-lg")
             }
+            draggable={false}
           />
         ))}
       </div>

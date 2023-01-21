@@ -3,15 +3,13 @@ import React, {
   useState,
   useRef,
   useEffect,
-  useMemo,
   ReactNode,
-  useCallback,
 } from "react";
 import Header from "./Header";
 import Icon from "./Icon";
 import Body from "./Body";
 
-export interface mainProps {
+export interface ExpandableMenuProps {
   children: ReactNode;
   onExpanded: (v: boolean) => void;
 }
@@ -29,24 +27,21 @@ export const ExpandableContext = createContext<ExpandableContextType>({
 //onExpanded is a function that is triggered after body element is expanded. It passes an argument determining
 // whether the component is expanded (true) or collapsed (false)
 
-const Expandable = ({ children, onExpanded }: mainProps) => {
+const Expandable = ({ children, onExpanded }: ExpandableMenuProps) => {
   const [expanded, setExpanded] = useState(false);
-  const toggleExpand = useCallback(
-    () => setExpanded((prevExpanded) => !prevExpanded),
-    []
-  );
-  const value = useMemo(
-    () => ({ expanded, toggleExpand }),
-    [expanded, toggleExpand]
-  );
+
+  const toggleExpand = () => setExpanded((prevExpanded) => !prevExpanded);
+
+  const value = { expanded, toggleExpand };
 
   const componentJustMounted = useRef(true);
+
   useEffect(() => {
     if (!componentJustMounted) {
       onExpanded(expanded);
     }
     componentJustMounted.current = false;
-  }, [expanded]);
+  }, [expanded, onExpanded]);
 
   return (
     <ExpandableContext.Provider value={value}>
