@@ -63,27 +63,23 @@ const SearchParams = () => {
     <div className="my-0 mx-auto flex flex-col items-center justify-center">
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="mb-10 flex flex-col items-start justify-center rounded-lg 
-        bg-red-100 px-9 shadow-xl"
+        className="mx-auto mb-10 flex max-w-[346px] flex-col flex-wrap items-start justify-center 
+        rounded-lg bg-red-100 px-12 shadow-xl sm:max-w-[618px] md:flex-row md:px-0"
       >
-        <label
-          htmlFor="location"
-          className="mx-8 my-4 flex flex-col self-stretch"
-        >
-          Location
+        <p className="mx-8 mt-2 flex flex-col self-stretch">
+          <label className="mt-2" htmlFor="location">
+            Location
+          </label>
           <input
             {...register("location")}
             type="text"
-            className="rounded-md shadow-lg focus:border-blue-100"
+            className="mt-1 rounded-md shadow-lg focus:border-blue-100"
           />
-        </label>
-        <label
-          htmlFor="animal"
-          className="mx-8 my-4 flex flex-col self-stretch"
-        >
-          Animal
+          <label className="mt-2" htmlFor="animal">
+            Animal
+          </label>
           <select
-            className="rounded-md shadow-lg focus:border-blue-100 "
+            className="mt-1 rounded-md shadow-lg focus:border-blue-100"
             {...register("animal")}
           >
             <option />
@@ -93,11 +89,13 @@ const SearchParams = () => {
               </option>
             ))}
           </select>
-        </label>
-        <label htmlFor="breed" className="mx-8 my-4 flex flex-col self-stretch">
-          Breed
+        </p>
+        <p className="mx-8 mb-4 mt-2 flex flex-col self-stretch">
+          <label className="mt-2" htmlFor="breed">
+            Breed{" "}
+          </label>
           <select
-            className="rounded-md shadow-lg focus:border-blue-100 disabled:border-gray-400 "
+            className="mt-1 rounded-md shadow-lg focus:border-blue-100 disabled:border-gray-400 "
             disabled={!breeds?.length || undefined}
             {...register("breed")}
           >
@@ -108,29 +106,32 @@ const SearchParams = () => {
               </option>
             ))}
           </select>
-        </label>
-        <label htmlFor="theme" className="mx-8 my-4 flex flex-col self-stretch">
-          Theme
+
+          <label className="mt-2" htmlFor="theme">
+            Theme
+          </label>
           <select
             value={theme}
             onChange={(e) => setTheme(e.target.value)}
             onBlur={(e) => setTheme(e.target.value)}
-            className="rounded-md shadow-lg focus:border-blue-100 "
+            className="mt-1 rounded-md shadow-lg focus:border-blue-100 "
           >
             <option value="rgb(153 27 27)">kororek kororowy</option>
             <option value="peru">Peru reru</option>
             <option value="mediumorchid">Medium Orchid łełe</option>
           </select>
-        </label>
-        <button
-          style={{ backgroundColor: theme }}
-          className="container my-8 w-auto self-center rounded-md py-2 
-          px-8 text-white shadow-lg shadow-stone-500 
-          transition-all duration-75 
-          active:translate-y-1 active:hue-rotate-15"
-        >
-          Submit
-        </button>
+        </p>
+        <p className="mx-auto flex basis-full">
+          <button
+            style={{ backgroundColor: theme }}
+            className="container my-8 mx-auto w-auto rounded-md py-2
+            px-8 text-white shadow-lg shadow-stone-500
+            transition-all duration-75
+            active:translate-y-1 active:hue-rotate-15 md:max-w-fit"
+          >
+            Submit
+          </button>
+        </p>
       </form>
       <Results pets={data} />
     </div>
