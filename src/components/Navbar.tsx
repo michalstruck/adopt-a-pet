@@ -11,7 +11,7 @@ const Navbar = () => {
   const { randomize, randomPetId } = useRandomPetById();
 
   return (
-    <div className="fixed w-auto h-0 top-0 right-5 z-10">
+    <div className="fixed top-0 right-5 z-10 h-0 w-auto">
       <div className="flex flex-col justify-start self-start">
         <Expandable
           onExpanded={(onExpandedEvent) => console.log({ onExpandedEvent })}
@@ -33,7 +33,7 @@ const Navbar = () => {
                       setTimeout(() => setTurnState(false), 10)
                     }
                     className={`${turnState ? "animate-turn360" : ""}
-                text-7xl float-right`}
+                float-right text-7xl`}
                   >
                     {expanded ? "‒" /* it's the figure dash */ : "+"}
                   </button>
@@ -45,7 +45,7 @@ const Navbar = () => {
             key="body"
             tailwindStyle="bg-red-200 opacity-70 text-right mt-auto "
           >
-            <div className="text-left p-3">
+            <div className="p-3 text-left">
               <h1 className="text-4xl font-semibold">Quick start</h1>
               <br />
               <section>
@@ -61,7 +61,7 @@ const Navbar = () => {
                     </Link>
                   </button>
                 </div>
-                <div className="w-4/5 mt-3 mb-1">
+                <div className="mt-3 mb-1 w-4/5">
                   <Divider />
                 </div>
                 <div className="text-3xl">
@@ -87,7 +87,7 @@ const Navbar = () => {
                     </Link>
                   </div>
                 </div>
-                <div className="w-4/5 mt-3 mb-1">
+                <div className="mt-3 mb-1 w-4/5">
                   <Divider />
                 </div>
                 <footer className="text-lg">

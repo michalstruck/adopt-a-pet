@@ -54,36 +54,36 @@ const SearchParams = () => {
   if (!data) {
     return <h1>Something went wrong</h1>;
   }
-  console.log(submitData);
+
   const onSubmit = (submitData: FormValues) => {
     setSubmitData(submitData);
   };
 
   return (
-    <div className="flex flex-col items-center justify-center my-0 mx-auto">
+    <div className="my-0 mx-auto flex flex-col items-center justify-center">
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="flex flex-col justify-center items-start mb-10 px-9 
-        rounded-lg bg-red-100 shadow-xl"
+        className="mb-10 flex flex-col items-start justify-center rounded-lg 
+        bg-red-100 px-9 shadow-xl"
       >
         <label
           htmlFor="location"
-          className="flex flex-col self-stretch mx-8 my-4"
+          className="mx-8 my-4 flex flex-col self-stretch"
         >
           Location
           <input
             {...register("location")}
             type="text"
-            className="shadow-lg rounded-md focus:border-blue-100"
+            className="rounded-md shadow-lg focus:border-blue-100"
           />
         </label>
         <label
           htmlFor="animal"
-          className="flex flex-col self-stretch mx-8 my-4"
+          className="mx-8 my-4 flex flex-col self-stretch"
         >
           Animal
           <select
-            className="shadow-lg rounded-md focus:border-blue-100 "
+            className="rounded-md shadow-lg focus:border-blue-100 "
             {...register("animal")}
           >
             <option />
@@ -94,10 +94,10 @@ const SearchParams = () => {
             ))}
           </select>
         </label>
-        <label htmlFor="breed" className="flex flex-col self-stretch mx-8 my-4">
+        <label htmlFor="breed" className="mx-8 my-4 flex flex-col self-stretch">
           Breed
           <select
-            className="shadow-lg rounded-md focus:border-blue-100 disabled:border-gray-400 "
+            className="rounded-md shadow-lg focus:border-blue-100 disabled:border-gray-400 "
             disabled={!breeds?.length || undefined}
             {...register("breed")}
           >
@@ -109,13 +109,13 @@ const SearchParams = () => {
             ))}
           </select>
         </label>
-        <label htmlFor="theme" className="flex flex-col self-stretch mx-8 my-4">
+        <label htmlFor="theme" className="mx-8 my-4 flex flex-col self-stretch">
           Theme
           <select
             value={theme}
             onChange={(e) => setTheme(e.target.value)}
             onBlur={(e) => setTheme(e.target.value)}
-            className="shadow-lg rounded-md focus:border-blue-100 "
+            className="rounded-md shadow-lg focus:border-blue-100 "
           >
             <option value="rgb(153 27 27)">kororek kororowy</option>
             <option value="peru">Peru reru</option>
@@ -124,8 +124,8 @@ const SearchParams = () => {
         </label>
         <button
           style={{ backgroundColor: theme }}
-          className="w-auto rounded-md my-8 py-2 px-8 self-center 
-          shadow-lg shadow-stone-500 text-white container 
+          className="container my-8 w-auto self-center rounded-md py-2 
+          px-8 text-white shadow-lg shadow-stone-500 
           transition-all duration-75 
           active:translate-y-1 active:hue-rotate-15"
         >

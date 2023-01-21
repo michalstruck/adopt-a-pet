@@ -13,14 +13,14 @@ export const Carousel = ({ images }: { images: string[] | undefined }) => {
   if (!images) return <CarouselPlaceholder />;
 
   return (
-    <div className="flex items-center justify-center flex-col sm:flex-row sm:justify-start">
+    <div className="flex flex-col items-center justify-center sm:flex-row sm:justify-start">
       <img
         data-testid="hero"
         src={images[active]}
-        className="aspect-square w-52 xl:w-96 lg:w-80 md:w-72 rounded-md shadow-lg "
+        className="aspect-square w-52 rounded-md shadow-lg md:w-72 lg:w-80 xl:w-96 "
         alt="animal"
       />
-      <div className="flex flex-wrap flex-row justify-center sm:justify-start">
+      <div className="flex flex-row flex-wrap justify-center sm:justify-start">
         {images.map((photo: string | undefined, i: number) => (
           <img
             data-testid={`thumbnail${i}`}
@@ -30,10 +30,10 @@ export const Carousel = ({ images }: { images: string[] | undefined }) => {
             key={photo}
             src={photo}
             className={
-              "xl:w-44 xl:h-44 lg:w-32 lg:h-32 w-24 h-24 min-width-24 rounded-full m-2 cursor-pointer transition-all duration-[50]" +
+              "min-width-24 m-2 h-24 w-24 cursor-pointer rounded-full transition-all duration-[50] lg:h-32 lg:w-32 xl:h-44 xl:w-44 " +
               (i === active
-                ? "shadow-2xl outline-4 outline-black outline"
-                : "shadow-lg opacity-70")
+                ? "shadow-2xl outline outline-4 outline-black"
+                : "opacity-70 shadow-lg")
             }
             draggable={false}
           />

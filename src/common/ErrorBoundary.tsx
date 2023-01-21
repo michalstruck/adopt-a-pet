@@ -33,7 +33,7 @@ class ErrorBoundary extends Component<Props, State> {
       return <Redirect to="/" />;
     } else if (this.state.hasError) {
       return (
-        <div className="h-screen w-screen grid place-items-center">
+        <div className="grid h-screen w-screen place-items-center">
           <h1 className="text-2xl font-bold ">
             This listing has an error.{" "}
             <Link to="/">

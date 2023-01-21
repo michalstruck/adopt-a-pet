@@ -16,16 +16,16 @@ const Pet = ({ name, animal, breed, images = [], location, id }: PetProps) => {
     <>
       <Link
         to={`/details/${id}`}
-        className="flex flex-col items-center my-4 sm:items-start sm:flex-row sm:mx-8"
+        className="my-4 flex flex-col items-center sm:mx-8 sm:flex-row sm:items-start"
       >
         <img
           data-testid="thumbnail"
           src={hero}
           alt={name}
-          className="w-36 h-36 sm:w-48 sm:h-48 rounded-full shadow-md shadow-stone-500"
+          className="h-36 w-36 rounded-full shadow-md shadow-stone-500 sm:h-48 sm:w-48"
         />
-        <div className="flex flex-col items-center sm:items-start sm:ml-4">
-          <h1 className="flex flex-shrink flex-wrap text-3xl font-bold break-all mt-1">
+        <div className="flex flex-col items-center sm:ml-4 sm:items-start">
+          <h1 className="mt-1 flex flex-shrink flex-wrap break-all text-3xl font-bold">
             {name}
           </h1>
           <h1 className="flex flex-shrink text-lg">

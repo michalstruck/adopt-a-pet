@@ -24,16 +24,16 @@ export const Details = (props: RouteComponentProps<{ id: string }>) => {
 
   return (
     <div
-      className="w-10/12 p-4 
-      bg-red-100 
-      shadow-lg 
+      className="mx-auto w-10/12 
       rounded-lg 
-      text-center mx-auto"
+      bg-red-100 
+      p-4 
+      text-center shadow-lg"
     >
       <Carousel images={images} />
       <div>
-        <h1 className="text-6xl font-bold text-center mt-8">{name}</h1>
-        <h2 className="text-3xl font-bold mt-6">
+        <h1 className="mt-8 text-center text-6xl font-bold">{name}</h1>
+        <h2 className="mt-6 text-3xl font-bold">
           {animal} - {breed} - {city} - {state}{" "}
         </h2>
         <ThemeContext.Consumer>
@@ -41,26 +41,26 @@ export const Details = (props: RouteComponentProps<{ id: string }>) => {
             <button
               onClick={toggleModal}
               style={{ backgroundColor: theme[0] }}
-              className="rounded-md transition-all duration-75 active:translate-y-1 h-auto w-auto px-6 py-1
-               text-white container my-8"
+              className="container my-8 h-auto w-auto rounded-md px-6 py-1 text-white
+               transition-all duration-75 active:translate-y-1"
             >
               Adopt <br /> {name}
             </button>
           )}
         </ThemeContext.Consumer>
-        <p className="text-2xl pr-4">{description}</p>
+        <p className="pr-4 text-2xl">{description}</p>
 
         {showModal ? (
           <Modal>
-            <div className="bg-red-200 rounded-lg grid place-items-center">
-              <h1 className="text-2xl mt-6">Would you like to adopt {name}?</h1>
+            <div className="grid place-items-center rounded-lg bg-red-200">
+              <h1 className="mt-6 text-2xl">Would you like to adopt {name}?</h1>
               <div>
                 <ThemeContext.Consumer>
                   {(theme) => (
                     <button
                       style={{ backgroundColor: theme[0] }}
-                      className="rounded-md transition-all duration-75 active:translate-y-1 h-10 w-24 
-                    text-white container mx-36 my-8"
+                      className="container mx-36 my-8 h-10 w-24 rounded-md 
+                    text-white transition-all duration-75 active:translate-y-1"
                       onClick={adopt}
                     >
                       Yes
@@ -71,8 +71,8 @@ export const Details = (props: RouteComponentProps<{ id: string }>) => {
                   {(theme) => (
                     <button
                       style={{ backgroundColor: theme[0] }}
-                      className="rounded-md transition-all duration-75 active:translate-y-1 h-10 w-24 
-                    text-white container mx-36 my-8"
+                      className="container mx-36 my-8 h-10 w-24 rounded-md 
+                    text-white transition-all duration-75 active:translate-y-1"
                       onClick={toggleModal}
                     >
                       No!!

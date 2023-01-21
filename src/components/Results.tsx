@@ -7,7 +7,7 @@ const Results = ({ pets }: { pets: IPet[] }) => {
   return (
     <div
       className={
-        "flex flex-col h-auto m-auto px-4 lg:w-[60rem] py-4 rounded-lg bg-red-100 shadow-xl justify-center mb-4"
+        "m-auto mb-4 flex h-auto flex-col justify-center rounded-lg bg-red-100 px-4 py-4 shadow-xl lg:w-[60rem]"
       }
     >
       {pets.length ? (
