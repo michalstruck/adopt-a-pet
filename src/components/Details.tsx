@@ -16,20 +16,14 @@ export const Details = (props: RouteComponentProps<{ id: string }>) => {
 
   const { data, isLoading, isError } = usePetDetails(props.match.params.id);
 
-  if (isLoading || isError) return <></>;
+  if (isLoading) return <DetailsPlaceholder />;
 
-  if (!data) return <DetailsPlaceholder />;
+  if (isError || !data) return <h1>ERROR</h1>;
 
   const { animal, breed, city, state, description, name, images } = data;
 
   return (
-    <div
-      className="mx-auto w-10/12 
-      rounded-lg 
-      bg-red-100 
-      p-4 
-      text-center shadow-lg"
-    >
+    <div className="mx-auto w-10/12 rounded-lg bg-red-100 p-4 text-center shadow-lg">
       <Carousel images={images} />
       <div>
         <h1 className="mt-8 text-center text-6xl font-bold">{name}</h1>
