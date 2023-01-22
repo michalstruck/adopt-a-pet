@@ -31,10 +31,11 @@ const useRequestPets = (
     () => requestPets(location, animal, breed),
     { enabled, select: (data) => data.pets, refetchOnWindowFocus: false }
   );
+  const { data, isLoading, isError } = query;
   return {
-    data: query.data,
-    isLoading: query.isLoading,
-    isError: query.isError,
+    data,
+    isLoading,
+    isError,
     refetchData: () => queryClient.invalidateQueries("requestPets"),
   };
 };

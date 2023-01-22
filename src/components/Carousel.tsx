@@ -9,7 +9,6 @@ export const Carousel = ({ images }: { images: string[] | undefined }) => {
     setActive(+event.target.dataset.index!);
   };
 
-  // TODO: add placeholder
   if (!images) return <CarouselPlaceholder />;
 
   return (
@@ -21,7 +20,7 @@ export const Carousel = ({ images }: { images: string[] | undefined }) => {
         alt="animal"
       />
       <div className="flex flex-row flex-wrap justify-center sm:justify-start">
-        {images.map((photo: string | undefined, i: number) => (
+        {images.map((photo: string, i: number) => (
           <img
             data-testid={`thumbnail${i}`}
             alt="img"

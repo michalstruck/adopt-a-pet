@@ -12,11 +12,13 @@ const useBreedList = (animalInput?: Animal) => {
       },
     }).then((res) => res.json())
   );
-
+  const { isLoading, isError, isSuccess, data } = query;
   return {
-    breeds: query.data?.breeds ?? [],
-    animal: query.data?.animal,
-    ...query,
+    breeds: data?.breeds,
+    animal: data?.animal,
+    isLoading,
+    isError,
+    isSuccess,
   };
 };
 

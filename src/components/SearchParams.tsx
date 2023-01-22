@@ -39,24 +39,21 @@ const SearchParams = () => {
   );
 
   const { breeds } = useBreedList(watch("animal") as Animal);
+
   const [theme, setTheme] = useContext(ThemeContext);
 
-  // TODO: create screens for these cases
-
-  if (isLoading) {
-    return <h1>Loading...</h1>;
-  }
-
   if (isError) {
+    console.error("Unhandled error fetching data");
     return <h1>Error!</h1>;
   }
 
-  if (!data) {
-    return <h1>Something went wrong</h1>;
-  }
-
   const onSubmit = (submitData: FormValues) => {
-    setSubmitData(submitData);
+    setSubmitData((prev) => {
+      if (prev.animal !== submitData.animal)
+        return { ...submitData, breed: "" };
+
+      return submitData;
+    });
   };
 
   return (
@@ -79,6 +76,7 @@ const SearchParams = () => {
             Animal
           </label>
           <select
+            disabled={isLoading}
             className="mt-1 rounded-md shadow-lg focus:border-blue-100"
             {...register("animal")}
           >
@@ -92,11 +90,11 @@ const SearchParams = () => {
         </p>
         <p className="mx-8 mb-4 mt-2 flex flex-col self-stretch">
           <label className="mt-2" htmlFor="breed">
-            Breed{" "}
+            Breed
           </label>
           <select
             className="mt-1 rounded-md shadow-lg focus:border-blue-100 disabled:border-gray-400 "
-            disabled={!breeds?.length || undefined}
+            disabled={!breeds || isLoading}
             {...register("breed")}
           >
             <option />
@@ -111,6 +109,7 @@ const SearchParams = () => {
             Theme
           </label>
           <select
+            disabled={isLoading}
             value={theme}
             onChange={(e) => setTheme(e.target.value)}
             onBlur={(e) => setTheme(e.target.value)}
@@ -133,7 +132,7 @@ const SearchParams = () => {
           </button>
         </p>
       </form>
-      <Results pets={data} />
+      <Results pets={data} isLoadingPets={isLoading} />
     </div>
   );
 };

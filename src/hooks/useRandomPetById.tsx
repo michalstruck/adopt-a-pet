@@ -35,14 +35,11 @@ const useRandomPetById = () => {
     isSuccess
   );
 
-  if (isLoading || isError || !data)
-    return { isLoading, isError, randomPetId: undefined };
-
   return {
     isLoading,
     isError,
     randomPetId:
-      data && data[getRandomIndex(randomNumbers[2] ?? 0.86, data.length)]?.id,
+      data?.[getRandomIndex(randomNumbers[2] ?? 0.86, data.length)]?.id,
     randomize,
   };
 };
