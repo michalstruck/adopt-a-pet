@@ -48,12 +48,7 @@ const SearchParams = () => {
   }
 
   const onSubmit = (submitData: FormValues) => {
-    setSubmitData((prev) => {
-      if (prev.animal !== submitData.animal)
-        return { ...submitData, breed: "" };
-
-      return submitData;
-    });
+    setSubmitData(submitData);
   };
 
   return (
